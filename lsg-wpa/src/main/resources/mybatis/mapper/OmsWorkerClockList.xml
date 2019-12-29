@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lsg.mapper.WorkClockListMapper">
+	<resultMap id="BaseResultMap" type="com.lsg.entity.OmsWorkerClockListPo">
+		<result column="USER_ID" property="userId" />
+		<result column="POSTION_ID" property="postionId" />
+		<result column="MERCH_ID" property="merchId" />
+		<result column="POSTION_APPLY_ID" property="postionApplyId" />
+		<result column="CLOCK_TYPE" property="clockType" />
+		<result column="CLOCK_ADDR" property="clockAddr" />
+		<result column="CLOCK_TIME" property="clockTime" />
+		<result column="CREATE_TIME" property="createTime" />
+		<result column="REMARK1" property="remark1" />
+	</resultMap>
+
+	
+	<select id="queryCurrentDayClock" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+		select USER_ID ,
+			   POSTION_ID,
+		       MERCH_ID,
+		       CLOCK_TYPE ,
+		       POSTION_APPLY_ID,
+		       CLOCK_ADDR,
+		       CLOCK_TIME,
+		       CREATE_TIME
+		from t_oms_worker_clock_list 
+		where POSTION_APPLY_ID=#{postionApplyId} 
+		and DATE_FORMAT(clock_time,'%Y%m%d') = #{currentDay} 
+		and CLOCK_TYPE = #{clockType}; 
+  </select>
+  
+  
+  <update id="updateClockTime" >
+  	 update
+		t_oms_worker_clock_list
+			set CLOCK_TIME = #{clockTime}
+	 where
+		POSTION_APPLY_ID=#{postionApplyId} 
+		and DATE_FORMAT(clock_time,'%Y%m%d') = #{currentDay} 
+		and CLOCK_TYPE = #{clockType}; 
+		
+  	</update>
+	
+
+</mapper>

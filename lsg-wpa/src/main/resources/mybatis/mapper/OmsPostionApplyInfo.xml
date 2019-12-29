@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lsg.mapper.PostionApplyInfoMapper">
+	<resultMap id="BaseResultMap" type="com.lsg.entity.OmsPostionApplyInfoPo">
+		<result column="APPLY_USER_ID" property="applyUserId" />
+		<result column="POSTION_ID" property="postionId" />
+		<result column="POSTION_APPLY_ID" property="postionApplyId" />
+		<result column="MERCH_ID" property="merchId" />
+		<result column="EXEM_NO" property="exemNo" />
+		<result column="EXEM_STAT" property="exemStat" />
+		<result column="EXEM_MSG" property="exemMsg" />
+		<result column="IS_NOTICE" property="isNotice" />
+		<result column="CREATE_TIME" property="createTime" />
+		<result column="MODIFY_TIME" property="modifyTime" />
+		<result column="REMARK1" property="remark1" />
+	</resultMap>
+
+	<update id="updateExemStat" >
+  	 update
+		t_oms_postion_apply_info
+		
+			set EXEM_STAT = #{exemStat},
+			EXEM_NO = #{exemNo}
+		
+	 where
+			POSTION_APPLY_ID = #{postionApplyId}
+		
+  	</update>
+</mapper>

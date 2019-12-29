@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lsg.mapper.WorkerExemMapper">
+	<resultMap id="BaseResultMap" type="com.lsg.entity.OmsWorkExamInfoPo">
+		<result column="USER_ID" property="userId" />
+		<result column="POSTION_ID" property="postionId" />
+		<result column="MERCH_ID" property="merchId" />
+		<result column="POSTION_APPLY_ID" property="postionApplyId" />
+		<result column="PLATFORM_EXAM_STAT1" property="platformExamStat1" />
+		<result column="PLATFOR_MCHARGE1" property="platforMcharge1" />
+		<result column="MERCH_CHARGE" property="merchCharge" />
+		<result column="MERCH_EXAM_STAT" property="merchExamStat" />
+		<result column="FINANCE_OPER_NO" property="financeOperNo" />
+		<result column="FINANCE_EXAM_STAT" property="financeExamStat" />
+		<result column="CREATE_TIME" property="createTime" />
+		<result column="MODIFY_TIME" property="modifyTime" />
+		<result column="REMARK1" property="remark1" />
+	</resultMap>
+
+
+	<sql id="Base_Column">
+		USER_ID,
+		POSTION_ID,
+		MERCH_ID,
+		POSTION_APPLY_ID,
+		PLATFORM_EXAM_STAT1,
+		PLATFOR_MCHARGE1,
+		MERCH_CHARGE,
+		MERCH_EXAM_STAT,
+		FINANCE_OPER_NO,
+		FINANCE_EXAM_STAT,
+		CREATE_TIME,
+		MODIFY_TIME,
+		REMARK1
+	</sql>
+
+	
+	
+
+</mapper>

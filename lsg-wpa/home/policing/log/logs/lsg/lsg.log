@@ -1,0 +1,42 @@
+2019-12-26 15:45:18.138 [main] INFO  com.example.lsg.LsgWpaApplication -Starting LsgWpaApplication on HXJ-PC with PID 243612 (D:\workspace\workSpacelsg\lsg-wpa\target\classes started by ww in D:\workspace\workSpacelsg\lsg-wpa)
+2019-12-26 15:45:18.145 [main] INFO  com.example.lsg.LsgWpaApplication -The following profiles are active: dev
+2019-12-26 15:45:23.643 [main] INFO  com.example.lsg.LsgWpaApplication -Started LsgWpaApplication in 7.626 seconds (JVM running for 9.663)
+2019-12-26 16:09:27.990 [main] INFO  com.example.lsg.LsgWpaApplication -Starting LsgWpaApplication on HXJ-PC with PID 266000 (D:\workspace\workSpacelsg\lsg-wpa\target\classes started by ww in D:\workspace\workSpacelsg\lsg-wpa)
+2019-12-26 16:09:27.994 [main] INFO  com.example.lsg.LsgWpaApplication -The following profiles are active: dev
+2019-12-26 16:09:33.732 [main] INFO  com.example.lsg.LsgWpaApplication -Started LsgWpaApplication in 7.061 seconds (JVM running for 8.3)
+2019-12-26 16:09:45.323 [http-nio-8081-exec-1] INFO  c.l.w.controller.UsrLoginController -/user/login  input:body{"userName":"234"} header123123444 
+2019-12-26 16:09:45.328 [http-nio-8081-exec-1] INFO  c.l.w.controller.UsrLoginController -用户登录开始
+2019-12-26 16:09:45.502 [http-nio-8081-exec-1] INFO  com.zaxxer.hikari.HikariDataSource -HikariPool-1 - Starting...
+2019-12-26 16:09:45.515 [http-nio-8081-exec-1] WARN  c.z.hikari.util.DriverDataSource -Registered driver with driverClassName=com.mysql.jdbc.Driver was not found, trying direct instantiation.
+2019-12-26 16:09:46.075 [http-nio-8081-exec-1] INFO  com.zaxxer.hikari.HikariDataSource -HikariPool-1 - Start completed.
+2019-12-26 16:09:46.098 [http-nio-8081-exec-1] DEBUG c.l.w.m.UserInfoMapper.selectOne -==>  Preparing: SELECT user_id,open_id,user_type,main_mobile,user_name,user_stat,user_level,is_cert,is_health,logo_addr,ident_image_addr,user_sex,birth_day,cert_no,cust_name,remark1,remark2,remark3 FROM T_WPA_USER_INFO WHERE open_id = ? 
+2019-12-26 16:09:46.175 [http-nio-8081-exec-1] DEBUG c.l.w.m.UserInfoMapper.selectOne -==> Parameters: 123123444(String)
+2019-12-26 16:09:46.258 [http-nio-8081-exec-1] DEBUG c.l.w.m.UserInfoMapper.selectOne -<==      Total: 1
+2019-12-26 16:09:46.264 [http-nio-8081-exec-1] INFO  c.l.w.controller.UsrLoginController -/user/login  output is com.lsg.wpa.entity.WpaUserInfo@557bc647 
+2019-12-26 16:09:46.264 [http-nio-8081-exec-1] INFO  c.l.w.controller.UsrLoginController -用户登录结束
+2019-12-26 16:25:21.886 [main] INFO  com.example.lsg.LsgWpaApplication -Starting LsgWpaApplication on HXJ-PC with PID 153928 (D:\workspace\workSpacelsg\lsg-wpa\target\classes started by ww in D:\workspace\workSpacelsg\lsg-wpa)
+2019-12-26 16:25:21.934 [main] INFO  com.example.lsg.LsgWpaApplication -The following profiles are active: dev
+2019-12-26 16:25:28.391 [main] INFO  com.example.lsg.LsgWpaApplication -Started LsgWpaApplication in 8.202 seconds (JVM running for 9.637)
+2019-12-26 16:25:35.094 [http-nio-8081-exec-8] INFO  c.l.w.controller.UsrLoginController -request input:body{"userName":"234"} header:123123444 
+2019-12-26 16:25:35.099 [http-nio-8081-exec-8] INFO  c.l.w.controller.UsrLoginController -用户登录开始
+2019-12-26 16:25:35.239 [http-nio-8081-exec-8] INFO  com.zaxxer.hikari.HikariDataSource -HikariPool-1 - Starting...
+2019-12-26 16:25:35.298 [http-nio-8081-exec-8] WARN  c.z.hikari.util.DriverDataSource -Registered driver with driverClassName=com.mysql.jdbc.Driver was not found, trying direct instantiation.
+2019-12-26 16:25:35.907 [http-nio-8081-exec-8] INFO  com.zaxxer.hikari.HikariDataSource -HikariPool-1 - Start completed.
+2019-12-26 16:25:35.925 [http-nio-8081-exec-8] DEBUG c.l.w.m.UserInfoMapper.selectOne -==>  Preparing: SELECT user_id,open_id,user_type,main_mobile,user_name,user_stat,user_level,is_cert,is_health,logo_addr,ident_image_addr,user_sex,birth_day,cert_no,cust_name,remark1,remark2,remark3 FROM T_WPA_USER_INFO WHERE open_id = ? 
+2019-12-26 16:25:36.003 [http-nio-8081-exec-8] DEBUG c.l.w.m.UserInfoMapper.selectOne -==> Parameters: 123123444(String)
+2019-12-26 16:25:36.070 [http-nio-8081-exec-8] DEBUG c.l.w.m.UserInfoMapper.selectOne -<==      Total: 1
+2019-12-26 16:25:36.101 [http-nio-8081-exec-8] INFO  c.l.w.controller.UsrLoginController -response output:{"userId":"2019121614824448","openId":"123123444","userType":"01","mainMobile":"123123123123","userName":"tset","userStat":"01","userLevel":"01","isCert":"0","isHealth":"0","logoAddr":"","identImageAddr":"","userSex":"1","birthDay":null,"certNo":null,"custName":null,"remark1":null,"remark2":null,"remark3":null} retCode:00000 retInfo:操作成功
+2019-12-26 16:25:36.101 [http-nio-8081-exec-8] INFO  c.l.w.controller.UsrLoginController -用户登录结束
+2019-12-26 16:30:15.893 [main] INFO  com.example.lsg.LsgWpaApplication -Starting LsgWpaApplication on HXJ-PC with PID 188392 (D:\workspace\workSpacelsg\lsg-wpa\target\classes started by ww in D:\workspace\workSpacelsg\lsg-wpa)
+2019-12-26 16:30:15.899 [main] INFO  com.example.lsg.LsgWpaApplication -The following profiles are active: dev
+2019-12-26 16:30:22.604 [main] INFO  com.example.lsg.LsgWpaApplication -Started LsgWpaApplication in 8.306 seconds (JVM running for 9.764)
+2019-12-26 16:30:30.441 [http-nio-8081-exec-8] INFO  c.l.w.controller.UsrLoginController -request input:body{"userName":"234"} header:123123444 
+2019-12-26 16:30:30.445 [http-nio-8081-exec-8] INFO  c.l.w.controller.UsrLoginController -用户登录开始
+2019-12-26 16:30:30.547 [http-nio-8081-exec-8] INFO  com.zaxxer.hikari.HikariDataSource -HikariPool-1 - Starting...
+2019-12-26 16:30:30.554 [http-nio-8081-exec-8] WARN  c.z.hikari.util.DriverDataSource -Registered driver with driverClassName=com.mysql.jdbc.Driver was not found, trying direct instantiation.
+2019-12-26 16:30:30.980 [http-nio-8081-exec-8] INFO  com.zaxxer.hikari.HikariDataSource -HikariPool-1 - Start completed.
+2019-12-26 16:30:30.997 [http-nio-8081-exec-8] DEBUG c.l.w.m.UserInfoMapper.selectOne -==>  Preparing: SELECT user_id,open_id,user_type,main_mobile,user_name,user_stat,user_level,is_cert,is_health,logo_addr,ident_image_addr,user_sex,birth_day,cert_no,cust_name,remark1,remark2,remark3 FROM T_WPA_USER_INFO WHERE open_id = ? 
+2019-12-26 16:30:31.066 [http-nio-8081-exec-8] DEBUG c.l.w.m.UserInfoMapper.selectOne -==> Parameters: 123123444(String)
+2019-12-26 16:30:31.122 [http-nio-8081-exec-8] DEBUG c.l.w.m.UserInfoMapper.selectOne -<==      Total: 1
+2019-12-26 16:30:31.149 [http-nio-8081-exec-8] INFO  c.l.w.controller.UsrLoginController -response output:body{"userId":"2019121614824448","openId":"123123444","userType":"01","mainMobile":"123123123123","userName":"tset","userStat":"01","userLevel":"01","isCert":"0","isHealth":"0","logoAddr":"","identImageAddr":"","userSex":"1","birthDay":null,"certNo":null,"custName":null,"remark1":null,"remark2":null,"remark3":null} header:ResponseMsg [code=00000, msg=操作成功]
+2019-12-26 16:30:31.149 [http-nio-8081-exec-8] INFO  c.l.w.controller.UsrLoginController -用户登录结束

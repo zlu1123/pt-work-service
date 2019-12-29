@@ -1,0 +1,20 @@
+mybatis:
+  type-aliases-package: com.lsg.entity
+  config-location: classpath:mybatis/mybatis-config.xml
+  mapper-locations: classpath:mybatis/mapper/*.xml
+
+mapper:
+  identity: MYSQL
+  not-empty: false
+  mappers: com.lsg.mybatis.BaseMapper 
+
+
+spring: 
+  profiles:
+    active: prod
+    
+    
+    
+  
+
+    

@@ -1,0 +1,10 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://mysqls.adxinfo.cn:3306/lsg?characterEncoding=utf8&useSSL=true&serverTimezone=UTC
+    username: lsg
+    password: lsg
+
+server:
+  port: 8811
+  context-path: /lsg

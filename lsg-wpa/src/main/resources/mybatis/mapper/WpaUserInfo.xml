@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lsg.mapper.UserInfoMapper">
+	<resultMap id="BaseResultMap" type="com.lsg.entity.WpaUserInfo">
+		<result column="USER_ID" property="userId" />
+		<result column="OPEN_ID" property="openId" />
+		<result column="USER_TYPE" property="userType" />
+		<result column="MAIN_MOBILE" property="mainMobile" />
+		<result column="USER_NAME" property="userName" />
+		<result column="USER_STAT" property="userStat" />
+		<result column="USER_LEVEL" property="userLevel" />
+		<result column="IS_CERT" property="isCert" />
+		<result column="IS_HEALTH" property="isHealth" />
+		<result column="LOGO_ADDR" property="logoAddr" />
+		<result column="IDENT_IMAGE_ADDR" property="identImageAddr" />
+		<result column="USER_SEX" property="userSex" />
+		<result column="BIRTH_DAY" property="birthDay" />
+		<result column="CERT_NO" property="certNo" />
+		<result column="CUST_NAME" property="custName" />
+		<result column="REMARK1" property="remark1" />
+		<result column="REMARK2" property="remark2" />
+		<result column="REMARK3" property="remark3" />
+	</resultMap>
+	
+</mapper>
