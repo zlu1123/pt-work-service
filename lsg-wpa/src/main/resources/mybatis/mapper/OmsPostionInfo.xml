@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lsg.mapper.PostionInfoMapper">
+	<resultMap id="BaseResultMap" type="com.lsg.entity.OmsPostionInfoPo">
+		<result column="POSTION_ID" property="postionId" />
+		<result column="POSTION_NAME" property="postionName" />
+		<result column="POSTION_ADDR" property="postionAddr" />
+		<result column="POSTION_WELFARE" property="postionWelfare" />
+		<result column="POSTION_REQUIRE" property="postionRequire" />
+		<result column="WORK_TIME" property="workTime" />
+		<result column="PRICE" property="price" />
+		<result column="PRICE_UNIT" property="priceUnit" />
+		<result column="BILLTYPE" property="billtype" />
+		<result column="POSITIONDES" property="positiondes" />
+		<result column="INSURANCE" property="insurance" />
+		<result column="MARGIN" property="margin" />
+		<result column="HEALTH" property="health" />
+		<result column="RELEAS_EMERCH" property="releasEmerch" />
+		<result column="RELEAS_EMERCH_NAME" property="releasEmerchName" />
+		<result column="OPER_NO" property="operNo" />
+		<result column="CREATE_TIME" property="createTime" />
+		<result column="MODIFY_TIME" property="modifyTime" />
+		<result column="REMARK1" property="remark1" />
+	</resultMap>
+
+
+	<sql id="Base_Column">
+		POSTION_ID,
+		POSTION_NAME,
+		POSTION_ADDR,
+		POSTION_WELFARE,
+		POSTION_REQUIRE,
+		WORK_TIME,
+		PRICE,
+		PRICE_UNIT,
+		BILLTYPE,
+		POSITIONDES,
+		INSURANCE,
+		MARGIN,
+		HEALTH,
+		RELEAS_EMERCH,
+		RELEAS_EMERCH_NAME,
+		OPER_NO,
+		CREATE_TIME,
+		MODIFY_TIME,
+		REMARK1
+	</sql>
+
+
+</mapper>

@@ -44,7 +44,7 @@ private Logger logger = LoggerFactory.getLogger(getClass());
 
 		logger.info("用户登录开始");
 		
-		Result out = userLoginService.getUserById(openId);
+		Result out = userLoginService.UserLogin(userLoginVo,openId);
 		
 		logger.info("用户登录结束");
 		return out;	

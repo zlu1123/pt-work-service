@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lsg.mapper.MerchInfoDirectorMapper">
+	<resultMap id="BaseResultMap" type="com.lsg.entity.OmsMerchToUserInofPo">
+		<result column="MERCH_ID" property="merchId" />
+		<result column="MERCH_CHARGE" property="merchCharge" />
+		<result column="MERCH_CHARGE_ID" property="merchChargeId" />
+		<result column="CREATE_TIME" property="createTime" />
+		<result column="MODIFY_TIME" property="modifyTime" />
+		<result column="REMARK1" property="remark1" />
+	</resultMap>
+
+	<sql id="Table_Name">
+		t_oms_merch_to_user_inof
+	</sql>
+
+	<sql id="Base_Column">
+		MERCH_ID,
+		MERCH_CHARGE,
+		MERCH_CHARGE_ID,
+		CREATE_TIME,
+		MODIFY_TIME,
+		REMARK1
+	</sql>
+
+	
+
+</mapper>

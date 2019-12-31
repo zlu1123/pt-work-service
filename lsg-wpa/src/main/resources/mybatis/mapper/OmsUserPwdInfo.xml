@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lsg.mapper.UserPwdInfoMapper">
+	<resultMap id="BaseResultMap" type="com.lsg.entity.OmsUserPwdInfoPo">
+		<result column="USER_ID" property="userId" />
+		<result column="PWD" property="pwd" />
+		<result column="PWD_STAT" property="pwdStat" />
+		<result column="PWD_ERROR_NUM" property="pwdErrorNum" />
+		<result column="CREATE_TIME" property="createTime" />
+		<result column="MODIFY_TIME" property="modifyTime" />
+		<result column="REMARK1" property="remark1" />
+	</resultMap>
+
+
+	<sql id="Base_Column">
+		USER_ID,
+		PWD,
+		PWD_STAT,
+		PWD_ERROR_NUM,
+		CREATE_TIME,
+		MODIFY_TIME,
+		REMARK1
+	</sql>
+
+	
+
+</mapper>

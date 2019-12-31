@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.lsg.model.Result;
+import com.lsg.service.CommonService;
 import com.lsg.vo.CommonVo;
 
 @RestController
@@ -20,7 +21,7 @@ public class CommonController {
 	
 
 	@Autowired
-    private CommonController commonController;
+    private CommonService commonService;
 	
 	private Logger logger = LoggerFactory.getLogger(getClass());
 	
@@ -33,7 +34,7 @@ public class CommonController {
 	@RequestMapping("/advert" )
     public Result advert(@RequestHeader(value = "openId", required = true) String openId) {
         //广告信息	
-        return commonController.advert(openId);
+        return commonService.advert(openId);
 
     }
 	
@@ -48,22 +49,10 @@ public class CommonController {
             @RequestHeader(value = "openId", required = true) String openId) {
         
 		//职位信息	
-        return commonController.queryPosition(queryPostionVo, openId);
+        return commonService.queryPosition(queryPostionVo, openId);
 
     }
 	
-	/**
-	 *职位详情
-	 * */
-	@ResponseBody
-	@RequestMapping("/positionInfo" )
-    public Result positionInfo(@RequestBody(required = false) @Valid CommonVo queryPostionVo,
-            @RequestHeader(value = "openId", required = true) String openId) {
-        
-		//职位详情	
-        return commonController.positionInfo(queryPostionVo, openId);
-
-    }
 	
 	
 	/**
@@ -75,7 +64,7 @@ public class CommonController {
     		@RequestHeader(value = "openId", required = true) String openId) {
         
 		//投诉建议
-        return commonController.suggestions(suggestionsVo, openId);
+        return commonService.suggestions(suggestionsVo, openId);
 
     }
 	

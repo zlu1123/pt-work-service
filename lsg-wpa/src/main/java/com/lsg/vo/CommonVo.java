@@ -4,7 +4,7 @@ public class CommonVo {
 	
 	private String sortType;
 	
-	private String merchantName;
+	private String merchName;
 	
 	private String location;
 
@@ -16,12 +16,14 @@ public class CommonVo {
 		this.sortType = sortType;
 	}
 
-	public String getMerchantName() {
-		return merchantName;
+
+
+	public String getMerchName() {
+		return merchName;
 	}
 
-	public void setMerchantName(String merchantName) {
-		this.merchantName = merchantName;
+	public void setMerchName(String merchName) {
+		this.merchName = merchName;
 	}
 
 	public String getLocation() {

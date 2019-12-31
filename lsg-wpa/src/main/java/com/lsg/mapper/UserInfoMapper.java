@@ -2,6 +2,8 @@ package com.lsg.mapper;
 
 
 
+import java.util.Map;
+
 import com.lsg.entity.WpaUserInfo;
 
 import tk.mybatis.mapper.common.BaseMapper;
@@ -13,7 +15,7 @@ public interface UserInfoMapper extends BaseMapper<WpaUserInfo> {
      * @param userQueryVo
      * @return
      */
-    
-    WpaUserInfo selectOne(String openId);
+
+	int updateOpenIdByUserId(Map<String, Object> map1);
 	
 }

@@ -17,12 +17,13 @@ import com.lsg.exception.BusinessException;
 import com.lsg.mapper.PostionApplyInfoMapper;
 import com.lsg.mapper.WorkerExemMapper;
 import com.lsg.model.Result;
-import com.lsg.service.PositionManageService;
-import com.lsg.vo.PositionApplyInfoVo;
+import com.lsg.service.PositionApplyService;
+import com.lsg.service.PositionReleaseService;
+import com.lsg.vo.PostionInfoVo;
 
 @Service 
 @Transactional(propagation = Propagation.REQUIRED, rollbackFor = {Exception.class})
-public class PositionManageServiceServiceImpl implements PositionManageService{
+public class PositionApplyServiceServiceImpl implements PositionApplyService{
 	
 	
 	@Autowired
@@ -32,32 +33,33 @@ public class PositionManageServiceServiceImpl implements PositionManageService{
 	WorkerExemMapper workerExemMapper;
 
 	@Override
-	public Result insert(PositionApplyInfoVo applyInfoVo, String openId) {
+	public Result insert(PostionInfoVo applyInfoVo, String openId) {
+		// TODO Auto-generated method stub
+		
+		return null;
+	}
+
+	@Override
+	public Result update(PostionInfoVo applyInfoVo, String openId) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Result update(PositionApplyInfoVo applyInfoVo, String openId) {
+	public Result delete(PostionInfoVo applyInfoVo, String openId) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Result delete(PositionApplyInfoVo applyInfoVo, String openId) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Result page(PositionApplyInfoVo applyInfoVo, String openId) {
+	public Result page(PostionInfoVo applyInfoVo, String openId) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 
 	@Override
-	public Result applyExam(PositionApplyInfoVo applyInfoVo, String openId) throws BusinessException {
+	public Result applyExam(PostionInfoVo applyInfoVo, String openId) throws BusinessException {
 		
 		//获取userId
 		String userId = openId;
@@ -84,7 +86,7 @@ public class PositionManageServiceServiceImpl implements PositionManageService{
 		return Result.success();
 	}
 
-	private void insertWorkExamInfo(PositionApplyInfoVo applyInfoVo, String userId) throws BusinessException {
+	private void insertWorkExamInfo(PostionInfoVo applyInfoVo, String userId) throws BusinessException {
 		OmsWorkExamInfoPo po = new OmsWorkExamInfoPo();
 		
 		po.setUserId(userId);
@@ -105,7 +107,7 @@ public class PositionManageServiceServiceImpl implements PositionManageService{
 		}
 	}
 
-	private void exemPostionApply(PositionApplyInfoVo applyInfoVo, String userId) throws BusinessException {
+	private void exemPostionApply(PostionInfoVo applyInfoVo, String userId) throws BusinessException {
 
 		Map<String,Object> map = new HashMap<String,Object>();
 		
@@ -121,13 +123,13 @@ public class PositionManageServiceServiceImpl implements PositionManageService{
 	}
 
 	@Override
-	public Result applyPush(PositionApplyInfoVo applyInfoVo, String openId) {
+	public Result applyPush(PostionInfoVo applyInfoVo, String openId) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Result applyList(PositionApplyInfoVo applyInfoVo, String openId) {
+	public Result applyList(PostionInfoVo applyInfoVo, String openId) {
 		Integer pageNum = null;
         Integer pageSize = null;
         if(null!=applyInfoVo){

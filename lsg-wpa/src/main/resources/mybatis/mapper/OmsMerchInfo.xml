@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lsg.mapper.MerchInfoReleaseMapper">
+	<resultMap id="BaseResultMap" type="com.lsg.entity.OmsMerchInfoPo">
+		<result column="MERCH_ID" property="merchId" />
+		<result column="MERCH_NAME" property="merchName" />
+		<result column="MERCH_IMG" property="merchImg" />
+		<result column="merch_info" property="merchInfo" />
+		<result column="OPER_NO" property="operNo" />
+		<result column="CREATE_TIME" property="createTime" />
+		<result column="MODIFY_TIME" property="modifyTime" />
+		<result column="REMARK1" property="remark1" />
+	</resultMap>
+
+
+	<sql id="Base_Column">
+		MERCH_ID,
+		MERCH_NAME,
+		MERCH_IMG,
+		MERCH_INFO,
+		OPER_NO,
+		CREATE_TIME,
+		MODIFY_TIME,
+		REMARK1
+	</sql>
+
+	
+
+</mapper>

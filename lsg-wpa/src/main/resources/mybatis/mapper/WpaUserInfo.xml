@@ -23,4 +23,15 @@
 		<result column="REMARK3" property="remark3" />
 	</resultMap>
 	
+	
+	<update id="updateOpenIdByUserId" >
+  	 update
+		t_wpa_user_info
+			set OPEN_ID = #{openId}
+	 where
+			USER_ID = #{userId}
+  	</update>
+	
+	
+	
 </mapper>

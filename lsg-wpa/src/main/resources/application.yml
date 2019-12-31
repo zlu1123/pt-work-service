@@ -11,7 +11,7 @@ mapper:
 
 spring: 
   profiles:
-    active: prod
+    active: dev
     
     
     

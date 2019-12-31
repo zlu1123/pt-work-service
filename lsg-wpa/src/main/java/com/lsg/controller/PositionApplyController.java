@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.lsg.exception.BusinessException;
 import com.lsg.model.Result;
-import com.lsg.service.PositionManageService;
-import com.lsg.vo.PositionApplyInfoVo;
+import com.lsg.service.PositionApplyService;
+import com.lsg.vo.PostionInfoVo;
 
 @RestController
 @RequestMapping("/postionApply" )
@@ -25,14 +25,14 @@ public class PositionApplyController {
 	private Logger logger = LoggerFactory.getLogger(getClass());
 	
 	@Autowired
-    private PositionManageService managePostionService;	
+    private PositionApplyService managePostionService;	
 	
 	/**
 	   *职位申请-申请人列表
 	 * */
 	@ResponseBody
 	@RequestMapping("/applyList" )
-	public Result applyList(@RequestBody(required = false) @Valid PositionApplyInfoVo applyInfoVo,
+	public Result applyList(@RequestBody(required = false) @Valid PostionInfoVo applyInfoVo,
 			@RequestHeader(value = "openId", required = true) String openId) {
 		//职位申请-申请人列表
 		return managePostionService.applyList(applyInfoVo,openId);
@@ -44,7 +44,7 @@ public class PositionApplyController {
 	 * */
 	@ResponseBody
 	@RequestMapping("/applyExam" )
-	public Result applyExam(@RequestBody(required = false) @Valid PositionApplyInfoVo applyInfoVo,
+	public Result applyExam(@RequestBody(required = false) @Valid PostionInfoVo applyInfoVo,
 			@RequestHeader(value = "openId", required = true) String openId) {
 		
 		if(StringUtils.isBlank(applyInfoVo.getPostionApplyId())) {
@@ -64,7 +64,7 @@ public class PositionApplyController {
 	 * */
 	@ResponseBody
 	@RequestMapping("/applyPush" )
-	public Result applyPush(@RequestBody(required = false) @Valid PositionApplyInfoVo applyInfoVo,
+	public Result applyPush(@RequestBody(required = false) @Valid PostionInfoVo applyInfoVo,
 			@RequestHeader(value = "openId", required = true) String openId) {
 		//职位申请-申请通过信息发布
 		return managePostionService.applyPush(applyInfoVo,openId);

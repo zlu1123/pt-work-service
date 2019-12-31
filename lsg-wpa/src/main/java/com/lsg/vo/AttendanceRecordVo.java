@@ -1,6 +1,5 @@
 package com.lsg.vo;
 
-import javax.validation.constraints.NotBlank;
 
 public class AttendanceRecordVo {
 	
