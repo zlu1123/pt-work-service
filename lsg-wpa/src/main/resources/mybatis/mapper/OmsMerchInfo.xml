@@ -6,6 +6,7 @@
 		<result column="MERCH_ID" property="merchId" />
 		<result column="MERCH_NAME" property="merchName" />
 		<result column="MERCH_IMG" property="merchImg" />
+		<result column="MERCH_ADDR" property="merchAddr" />
 		<result column="merch_info" property="merchInfo" />
 		<result column="OPER_NO" property="operNo" />
 		<result column="CREATE_TIME" property="createTime" />
@@ -19,6 +20,7 @@
 		MERCH_NAME,
 		MERCH_IMG,
 		MERCH_INFO,
+		MERCH_ADDR,
 		OPER_NO,
 		CREATE_TIME,
 		MODIFY_TIME,

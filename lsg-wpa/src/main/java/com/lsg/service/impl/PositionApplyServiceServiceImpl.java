@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.logging.log4j.util.Strings;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -59,10 +60,8 @@ public class PositionApplyServiceServiceImpl implements PositionApplyService{
 
 
 	@Override
-	public Result applyExam(PostionInfoVo applyInfoVo, String openId) throws BusinessException {
+	public Result applyExam(PostionInfoVo applyInfoVo) throws BusinessException {
 		
-		//获取userId
-		String userId = openId;
 		
 		//校验职位申请信息
 		OmsPostionApplyInfoPo po = new OmsPostionApplyInfoPo();
@@ -79,20 +78,20 @@ public class PositionApplyServiceServiceImpl implements PositionApplyService{
 		}
 		
 		//审核 职位申请
-		exemPostionApply(applyInfoVo,userId);
+		exemPostionApply(applyInfoVo);
 		
 		//插入职位信息到务工审核表
-		insertWorkExamInfo(applyInfoVo,userId);
+		insertWorkExamInfo(po);
 		return Result.success();
 	}
 
-	private void insertWorkExamInfo(PostionInfoVo applyInfoVo, String userId) throws BusinessException {
+	private void insertWorkExamInfo(OmsPostionApplyInfoPo po2) throws BusinessException {
 		OmsWorkExamInfoPo po = new OmsWorkExamInfoPo();
 		
-		po.setUserId(userId);
-		po.setMerchId(applyInfoVo.getMerchId());
-		po.setPostionId(applyInfoVo.getPostionId());
-		po.setPostionApplyId(applyInfoVo.getPostionApplyId());
+		po.setUserId(po2.getApplyUserId());
+		po.setMerchId(po2.getMerchId());
+		po.setPostionId(po2.getPostionId());
+		po.setPostionApplyId(po2.getPostionApplyId());
 		po.setPlatformExamStat1("0");//待审核
 		po.setMerchExamStat("0");//待审核
 		po.setFinanceExamStat("0");//待审核
@@ -107,11 +106,10 @@ public class PositionApplyServiceServiceImpl implements PositionApplyService{
 		}
 	}
 
-	private void exemPostionApply(PostionInfoVo applyInfoVo, String userId) throws BusinessException {
+	private void exemPostionApply(PostionInfoVo applyInfoVo) throws BusinessException {
 
 		Map<String,Object> map = new HashMap<String,Object>();
 		
-		map.put("exemNo", userId);
 		map.put("exemStat", "2");
 		map.put("postionApplyId", applyInfoVo.getPostionApplyId());
 		
@@ -129,7 +127,8 @@ public class PositionApplyServiceServiceImpl implements PositionApplyService{
 	}
 
 	@Override
-	public Result applyList(PostionInfoVo applyInfoVo, String openId) {
+	public Result applyList(PostionInfoVo applyInfoVo,String openId) {
+	
 		Integer pageNum = null;
         Integer pageSize = null;
         if(null!=applyInfoVo){
@@ -138,9 +137,21 @@ public class PositionApplyServiceServiceImpl implements PositionApplyService{
         }
 		//根据查询条件查询职位申请列表
         OmsPostionApplyInfoPo po = new OmsPostionApplyInfoPo();
-        po.setPostionId(applyInfoVo.getPostionId());
-        po.setMerchId(applyInfoVo.getMerchId());
-        po.setExemStat("1");
+        //po.setPostionId(applyInfoVo.getPostionId());
+        //po.setMerchId(applyInfoVo.getMerchId());
+        
+        
+    	
+		
+		if(!Strings.isBlank(openId)) {
+			String userId = openId;
+			po.setApplyUserId(userId);
+		}
+        if(null!=applyInfoVo) {
+            po.setExemStat(applyInfoVo.getApplyExemStat());
+           // po.setMerchId(applyInfoVo);
+        }
+
         
         List<OmsPostionApplyInfoPo> list = postionApplyInfoMapper.select(po);
         

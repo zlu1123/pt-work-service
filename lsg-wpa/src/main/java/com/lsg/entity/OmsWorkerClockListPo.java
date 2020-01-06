@@ -27,14 +27,6 @@ public class OmsWorkerClockListPo implements Serializable{
      */ 	
 	private java.lang.String userId;
     /**
-     * 职位Id       db_column: POSTION_ID 
-     */ 	
-	private java.lang.String postionId;
-    /**
-     * 企业ID       db_column: MERCH_ID 
-     */ 	
-	private java.lang.String merchId;
-    /**
      * 打卡类型 1-签到 2-签退       db_column: clock_type 
      */ 	
 	private java.lang.String clockType;
@@ -55,6 +47,15 @@ public class OmsWorkerClockListPo implements Serializable{
      */ 	
 	private java.lang.String remark1;
 	//columns END
+	
+    /**
+     * 申请职位Id       db_column: POSTION_ID 
+     */ 	
+	private java.lang.String postionId;
+    /**
+     * 企业ID       db_column: MERCH_ID 
+     */ 	
+	private java.lang.String merchId;
 
 
 	private String postionApplyId;
@@ -65,24 +66,6 @@ public class OmsWorkerClockListPo implements Serializable{
 	
 	public void setUserId(java.lang.String value) {
 		this.userId = value;
-	}
-	
-	
-	public java.lang.String getPostionId() {
-		return this.postionId;
-	}
-	
-	public void setPostionId(java.lang.String value) {
-		this.postionId = value;
-	}
-	
-	
-	public java.lang.String getMerchId() {
-		return this.merchId;
-	}
-	
-	public void setMerchId(java.lang.String value) {
-		this.merchId = value;
 	}
 	
 	
@@ -137,9 +120,22 @@ public class OmsWorkerClockListPo implements Serializable{
 	public void setPostionApplyId(String postionApplyId) {
 		this.postionApplyId = postionApplyId;
 	}
-	
 
-	
+	public java.lang.String getPostionId() {
+		return postionId;
+	}
 
+	public void setPostionId(java.lang.String postionId) {
+		this.postionId = postionId;
+	}
+
+	public java.lang.String getMerchId() {
+		return merchId;
+	}
+
+	public void setMerchId(java.lang.String merchId) {
+		this.merchId = merchId;
+	}
+	
 }
 

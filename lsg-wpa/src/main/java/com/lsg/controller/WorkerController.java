@@ -58,7 +58,7 @@ public class WorkerController {
 	
 
 	/**
-	 *录用信息查询
+	 *报名取消
 	 * @throws Exception 
 	 * */
 	@ResponseBody
@@ -66,7 +66,7 @@ public class WorkerController {
     public Result disRoll(@RequestBody(required = false) @Valid PostionInfoVo postionInfoVo,
             @RequestHeader(value = "openId", required = true) String openId) throws Exception {
         
-		//职位详报名
+		//报名取消
         return workerRoleService.disRoll(postionInfoVo, openId);
 
     }
@@ -222,7 +222,7 @@ public class WorkerController {
 	 * */
 	@ResponseBody
 	@RequestMapping("/mine/queryCurrentDayClock" )
-    public Result queryCurrentDayClock(@RequestBody(required = true) @Valid AttendanceRecordVo attendanceRecordVo,
+    public Result queryCurrentDayClock(@RequestBody @Valid AttendanceRecordVo attendanceRecordVo,
     		@RequestHeader(value = "openId", required = true) String openId) throws Exception {
         
 		logger.info("当前签到查询：queryCurrentDayClock开始");

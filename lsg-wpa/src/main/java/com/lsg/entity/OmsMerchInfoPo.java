@@ -56,7 +56,7 @@ public class OmsMerchInfoPo  implements Serializable{
 	private java.lang.String remark1;
 	//columns END
 
-
+	private String merchAddr;
 	
 	
 	public java.lang.String getMerchId() {
@@ -129,9 +129,14 @@ public class OmsMerchInfoPo  implements Serializable{
 	public void setRemark1(java.lang.String value) {
 		this.remark1 = value;
 	}
-	
 
-	
+	public String getMerchAddr() {
+		return merchAddr;
+	}
+
+	public void setMerchAddr(String merchAddr) {
+		this.merchAddr = merchAddr;
+	}
 
 }
 

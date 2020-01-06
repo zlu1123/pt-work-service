@@ -17,6 +17,8 @@ public class EnterpriseInfoVo {
 	private String certNo;
 	
 	private String mobile;
+	
+	private String operNo;
 
 	public String getMerchName() {
 		return merchName;
@@ -81,6 +83,14 @@ public class EnterpriseInfoVo {
 
 	public void setMobile(String mobile) {
 		this.mobile = mobile;
+	}
+
+	public String getOperNo() {
+		return operNo;
+	}
+
+	public void setOperNo(String operNo) {
+		this.operNo = operNo;
 	}
 	
 	

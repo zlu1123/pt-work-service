@@ -11,4 +11,6 @@ public interface UserLoginService {
 	
 	Result UserLogin(UserLoginVo vo,String id) throws BusinessException;
 	
+	Result OmsUserLogin(UserLoginVo vo) throws BusinessException;
+	
 }	

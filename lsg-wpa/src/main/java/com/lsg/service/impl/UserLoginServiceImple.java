@@ -12,11 +12,13 @@ import org.springframework.stereotype.Service;
 import com.lsg.common.BeanUtils;
 import com.lsg.common.ComonUtil;
 import com.lsg.entity.OmsMerchToUserInofPo;
+import com.lsg.entity.OmsUserInfoPo;
 import com.lsg.entity.OmsUserPwdInfoPo;
 import com.lsg.entity.WpaUserInfo;
 import com.lsg.exception.BusinessException;
 import com.lsg.mapper.MerchInfoDirectorMapper;
-import com.lsg.mapper.UserInfoMapper;
+import com.lsg.mapper.OmsUserInfoMapper;
+import com.lsg.mapper.WpaUserInfoMapper;
 import com.lsg.mapper.UserPwdInfoMapper;
 import com.lsg.model.Result;
 import com.lsg.service.UserLoginService;
@@ -29,7 +31,10 @@ public class UserLoginServiceImple implements UserLoginService{
 	private Logger logger = LoggerFactory.getLogger(getClass());
 
 	@Autowired
-	private UserInfoMapper userInfoMapper;
+	private WpaUserInfoMapper userInfoMapper;
+	
+	@Autowired
+	private OmsUserInfoMapper omsUserInfoMapper;
 	
 	@Autowired
 	private MerchInfoDirectorMapper merchInfoDirectorMapper;
@@ -139,42 +144,67 @@ public class UserLoginServiceImple implements UserLoginService{
 
 	private void workerLogin(UserLoginVo vo, String id, Map<String, Object> map) {
 		//1.查询用户信息
-				WpaUserInfo wpaUserInfo = new WpaUserInfo();
-				wpaUserInfo.setOpenId(id);
-				wpaUserInfo = userInfoMapper.selectOne(wpaUserInfo);
-						
-				//2.1首次登录
-				if(null == wpaUserInfo) {
-					//插入用户信息
-					 /* 生产用户ID */
-					 String userId = ComonUtil.createUserId();
-					 WpaUserInfo wpaUserInfo1 = new WpaUserInfo();
-			      
-			         wpaUserInfo1.setOpenId(id);
-			         wpaUserInfo1.setUserId(userId);
-			         wpaUserInfo1.setUserType("01");
-			         wpaUserInfo1.setMainMobile("123123123123");
-			         wpaUserInfo1.setUserStat("01");
-			         wpaUserInfo1.setUserLevel("01");
-			         wpaUserInfo1.setIsCert("0");
-			         wpaUserInfo1.setIsHealth("0");
-			         wpaUserInfo1.setLogoAddr("");
-			         wpaUserInfo1.setIdentImageAddr("");
-			         wpaUserInfo1.setUserSex("1");
-			         wpaUserInfo1.setUserName("tset");
-			         
-			         userInfoMapper.insert(wpaUserInfo1);
-			         
-			         map.putAll(BeanUtils.beanConvertToMap(wpaUserInfo1));
-				}
-				//2.2不是首次登录
-				else {
-					map.putAll(BeanUtils.beanConvertToMap(wpaUserInfo));
-				}
+		WpaUserInfo wpaUserInfo = new WpaUserInfo();
+		wpaUserInfo.setOpenId(id);
+		wpaUserInfo = userInfoMapper.selectOne(wpaUserInfo);
+				
+		//2.1首次登录
+		if(null == wpaUserInfo) {
+			//插入用户信息
+			 /* 生产用户ID */
+			 String userId = ComonUtil.createUserId();
+			 WpaUserInfo wpaUserInfo1 = new WpaUserInfo();
+	      
+	         wpaUserInfo1.setOpenId(id);
+	         wpaUserInfo1.setUserId(userId);
+	         wpaUserInfo1.setUserType("01");
+	         wpaUserInfo1.setMainMobile("123123123123");
+	         wpaUserInfo1.setUserStat("01");
+	         wpaUserInfo1.setUserLevel("01");
+	         wpaUserInfo1.setIsCert("0");
+	         wpaUserInfo1.setIsHealth("0");
+	         wpaUserInfo1.setLogoAddr("");
+	         wpaUserInfo1.setIdentImageAddr("");
+	         wpaUserInfo1.setUserSex("1");
+	         wpaUserInfo1.setUserName("tset");
+	         
+	         userInfoMapper.insert(wpaUserInfo1);
+	         
+	         map.putAll(BeanUtils.beanConvertToMap(wpaUserInfo1));
+		}
+		//2.2不是首次登录
+		else {
+			map.putAll(BeanUtils.beanConvertToMap(wpaUserInfo));
+		}
 		
 	}
 
-	
-	
-
+	@Override
+	public Result OmsUserLogin(UserLoginVo vo) throws BusinessException {
+		
+		//参数检查
+		if(	Strings.isBlank(vo.getLoginId())) {
+			throw new BusinessException("登录账户不能为空");
+		}
+		
+		if(	Strings.isBlank(vo.getPwd())) {
+			throw new BusinessException("登录密码不能为空");
+		}
+		            
+		//查询后管登录账号信息
+		OmsUserInfoPo po = new OmsUserInfoPo();
+		po.setLoginNo(vo.getLoginId());
+		po = omsUserInfoMapper.selectOne(po);
+		
+		if(null==po) {
+			throw new BusinessException("内管用户信息不存在");
+		}
+		
+		String pwd = MD5Utils.getMD5(vo.getPwd());
+		
+		if(!pwd.equals(po.getPwd())) {
+			throw new BusinessException("密码不正确");
+		}
+		return Result.success(po);
+	}
 }

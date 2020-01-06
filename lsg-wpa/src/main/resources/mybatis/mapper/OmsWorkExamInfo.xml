@@ -36,6 +36,31 @@
 	</sql>
 
 	
-	
+	<update id="updateWorkerExemStat" >
+  	 update
+		t_oms_worker_clock_list
+			
+			<set>
+			<if test="merchCharge != null">
+				 MERCH_CHARGE = #{merchCharge},
+			</if>
+			<if test="merchExamStat != null">
+				MERCH_EXAM_STAT = #{merchExamStat},
+			</if>
+			<if test="platforMcharge1 != null">
+				PLATFOR_MCHARGE1 = #{platforMcharge1},
+			</if>
+			<if test="financeOperNo != null">
+				FINANCE_OPER_NO = #{financeOperNo},
+			</if>
+			<if test="financeExamStat != null">
+				FINANCE_EXAM_STAT = #{financeExamStat},
+			</if>
+			</set>
+	 where
+			POSTION_APPLY_ID = #{postionApplyId}
+			and  USER_ID = $=#{workerUserId}
+		
+  	</update>
 
 </mapper>

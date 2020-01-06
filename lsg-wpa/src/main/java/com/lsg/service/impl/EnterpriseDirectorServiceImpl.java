@@ -2,6 +2,9 @@ package com.lsg.service.impl;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
+
+import javax.validation.Valid;
 
 import org.apache.logging.log4j.util.Strings;
 import org.slf4j.Logger;
@@ -19,7 +22,7 @@ import com.lsg.entity.OmsUserPwdInfoPo;
 import com.lsg.entity.WpaUserInfo;
 import com.lsg.exception.BusinessException;
 import com.lsg.mapper.MerchInfoDirectorMapper;
-import com.lsg.mapper.UserInfoMapper;
+import com.lsg.mapper.WpaUserInfoMapper;
 import com.lsg.mapper.UserPwdInfoMapper;
 import com.lsg.model.Result;
 import com.lsg.service.EnterpriseDirectorService;
@@ -37,20 +40,14 @@ public class EnterpriseDirectorServiceImpl implements EnterpriseDirectorService{
 	private MerchInfoDirectorMapper merchInfoDirectorMapper;
 
 	@Autowired
-	private UserInfoMapper userInfoMapper;
+	private WpaUserInfoMapper userInfoMapper;
 	
 	@Autowired
 	private UserPwdInfoMapper userPwdInfoMapper;
 	
 
 	@Override
-	public Result page(String openId) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Result insert(EnterpriseInfoVo vo, String openId) throws BusinessException {
+	public Result insert(EnterpriseInfoVo vo) throws BusinessException {
 
 		//企业ID 不能为空
 		if(Strings.isBlank(vo.getMerchId())) {
@@ -60,11 +57,26 @@ public class EnterpriseDirectorServiceImpl implements EnterpriseDirectorService{
 			throw new BusinessException("身份证号码");
 		}
 		
+		if(Strings.isBlank(vo.getMerchChargeName())) {
+			throw new BusinessException("负责人姓名");
+		}
+		//查询企业负责人手否被添加
+		
+		OmsMerchToUserInofPo po = new OmsMerchToUserInofPo();
+		po.setLoginId(vo.getCertNo());
+		po.setMerchId(vo.getMerchId());
+		
+		po = merchInfoDirectorMapper.selectOne(po) ;
+		
+		if(null !=po) {
+			throw new BusinessException("负责人信息已存在");
+		}
 		String userId = ComonUtil.createUserId();
-		//插入用户信息表
-		insertUserInfo(vo,userId);
+	
 		//插入负责人信息
 		insertsMerchToUserInfo(vo,userId);
+		//插入用户信息表
+		insertUserInfo(vo,userId);
 		//维护负责人默认密码  身份证后6位
 		insertPwdInfo(vo,userId);
 		
@@ -144,6 +156,24 @@ public class EnterpriseDirectorServiceImpl implements EnterpriseDirectorService{
 	public Result delete(EnterpriseInfoVo enterpriseInfoVo, String openId) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public Result page(EnterpriseInfoVo vo) throws BusinessException {
+		
+		if(Strings.isBlank(vo.getMerchId())) {
+			throw new BusinessException("企业ID不能为空");
+		}
+		
+		OmsMerchToUserInofPo po = new OmsMerchToUserInofPo();
+		po.setMerchId(vo.getMerchId());
+		po.setLoginId(vo.getCertNo());
+		po.setMerchCharge(vo.getMerchChargeName());
+		po.setMerchChargeId(vo.getMerchChargeId());
+		
+		List<OmsMerchToUserInofPo> list = merchInfoDirectorMapper.select(po) ;
+		
+		return Result.success(list);
 	}
 
 	

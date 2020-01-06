@@ -15,9 +15,9 @@ public interface PositionApplyService {
 	Result page(PostionInfoVo PostionInfoVo,String openId);
 	
 	
-	Result applyList(PostionInfoVo applyInfoVo,String openId);
+	Result applyList(PostionInfoVo applyInfoVo, String openId);
 	
-	Result applyExam(PostionInfoVo applyInfoVo,String openId) throws BusinessException;
+	Result applyExam(PostionInfoVo applyInfoVo) throws BusinessException;
 	
 	Result applyPush(PostionInfoVo applyInfoVo,String openId);
 }

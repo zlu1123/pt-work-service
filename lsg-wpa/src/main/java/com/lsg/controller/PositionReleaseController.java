@@ -32,12 +32,11 @@ public class PositionReleaseController {
 	 * */
 	@ResponseBody
 	@RequestMapping("/insert" )
-	public Result insert(@RequestBody(required = false) @Valid PostionInfoVo postionInfoVo,
-                     @RequestHeader(value = "openId", required = true) String openId) throws BusinessException {
+	public Result insert(@RequestBody(required = false) @Valid PostionInfoVo postionInfoVo) throws BusinessException {
 		
 		logger.info("/release/insert  param is {} ", postionInfoVo);
 		//职位发布维护-新增
-		return positionReleaseService.insert(postionInfoVo, openId);
+		return positionReleaseService.insert(postionInfoVo);
 
 	}
 	
@@ -79,6 +78,21 @@ public class PositionReleaseController {
         
 		//职位详情	
         return positionReleaseService.positionInfo(postionInfoVo, openId);
+
+    }
+	
+	
+	
+	/**
+	 *职位详情
+	 * @throws BusinessException 
+	 * */
+	@ResponseBody
+	@RequestMapping("/page" )
+    public Result page(@RequestBody(required = false) @Valid PostionInfoVo postionInfoVo) throws BusinessException {
+        
+		//职位详情	
+        return positionReleaseService.page(postionInfoVo);
 
     }
 	

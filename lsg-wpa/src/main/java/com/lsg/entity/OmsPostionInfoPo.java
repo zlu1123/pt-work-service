@@ -7,7 +7,7 @@ import javax.persistence.Table;
 @Table(name = "t_oms_postion_info")
 public class OmsPostionInfoPo implements Serializable{
 	
-	private static final long serialVersionUID = 1L;
+private static final long serialVersionUID = 1L;
 	
 	//alias
 	public static final String TABLE_ALIAS = "OmsPostionInfo";
@@ -18,12 +18,18 @@ public class OmsPostionInfoPo implements Serializable{
 	public static final String ALIAS_POSTION_REQUIRE = "职位要求";
 	public static final String ALIAS_WORK_TIME = "工作时间";
 	public static final String ALIAS_PRICE = "单价";
+	public static final String ALIAS_PRICE_UNIT = "单位";
 	public static final String ALIAS_BILLTYPE = "结算方式";
 	public static final String ALIAS_POSITIONDES = "职位详细描述";
 	public static final String ALIAS_INSURANCE = "保险选择";
 	public static final String ALIAS_MARGIN = "保证金";
 	public static final String ALIAS_HEALTH = "健康证选择";
 	public static final String ALIAS_RELEAS_EMERCH = "发布企业";
+	public static final String ALIAS_PLATFOR_MCHARGE1 = "平台负责人1";
+	public static final String ALIAS_PLATFOR_MCHARGE2 = "平台负责人2";
+	public static final String ALIAS_PLATFOR_MCHARGE3 = "平台负责人3";
+	public static final String ALIAS_PLATFOR_MCHARGE4 = "平台负责人4";
+	public static final String ALIAS_MERCH_CHARGE = "企业负责人";
 	public static final String ALIAS_OPER_NO = "操作员";
 	public static final String ALIAS_CREATE_TIME = "创建时间";
 	public static final String ALIAS_MODIFY_TIME = "更新时间";
@@ -60,7 +66,7 @@ public class OmsPostionInfoPo implements Serializable{
      */ 	
 	private java.lang.String price;
     /**
-        * 单价       db_column: PRICE 
+     * 单位       db_column: PRICE_UNIT 
      */ 	
 	private java.lang.String priceUnit;
     /**
@@ -88,11 +94,26 @@ public class OmsPostionInfoPo implements Serializable{
      */ 	
 	private java.lang.String releasEmerch;
     /**
-     * 发布企业       db_column: RELEAS_EMERCH 
+     * 平台负责人1       db_column: PLATFOR_MCHARGE1 
      */ 	
-	private java.lang.String releasEmerchName;
+	private java.lang.String platforMcharge1;
     /**
-  
+     * 平台负责人2       db_column: PLATFOR_MCHARGE2 
+     */ 	
+	private java.lang.String platforMcharge2;
+    /**
+     * 平台负责人3       db_column: PLATFOR_MCHARGE3 
+     */ 	
+	private java.lang.String platforMcharge3;
+    /**
+     * 平台负责人4       db_column: PLATFOR_MCHARGE4 
+     */ 	
+	private java.lang.String platforMcharge4;
+    /**
+     * 企业负责人       db_column: MERCH_CHARGE 
+     */ 	
+	private java.lang.String merchCharge;
+    /**
      * 操作员       db_column: OPER_NO 
      */ 	
 	private java.lang.String operNo;
@@ -109,6 +130,10 @@ public class OmsPostionInfoPo implements Serializable{
      */ 	
 	private java.lang.String remark1;
 	//columns END
+	
+	private java.lang.String releasEmerchName;
+	
+	private java.lang.String postionStat;
 
 	
 	
@@ -175,6 +200,15 @@ public class OmsPostionInfoPo implements Serializable{
 	}
 	
 	
+	public java.lang.String getPriceUnit() {
+		return this.priceUnit;
+	}
+	
+	public void setPriceUnit(java.lang.String value) {
+		this.priceUnit = value;
+	}
+	
+	
 	public java.lang.String getBilltype() {
 		return this.billtype;
 	}
@@ -229,6 +263,51 @@ public class OmsPostionInfoPo implements Serializable{
 	}
 	
 	
+	public java.lang.String getPlatforMcharge1() {
+		return this.platforMcharge1;
+	}
+	
+	public void setPlatforMcharge1(java.lang.String value) {
+		this.platforMcharge1 = value;
+	}
+	
+	
+	public java.lang.String getPlatforMcharge2() {
+		return this.platforMcharge2;
+	}
+	
+	public void setPlatforMcharge2(java.lang.String value) {
+		this.platforMcharge2 = value;
+	}
+	
+	
+	public java.lang.String getPlatforMcharge3() {
+		return this.platforMcharge3;
+	}
+	
+	public void setPlatforMcharge3(java.lang.String value) {
+		this.platforMcharge3 = value;
+	}
+	
+	
+	public java.lang.String getPlatforMcharge4() {
+		return this.platforMcharge4;
+	}
+	
+	public void setPlatforMcharge4(java.lang.String value) {
+		this.platforMcharge4 = value;
+	}
+	
+	
+	public java.lang.String getMerchCharge() {
+		return this.merchCharge;
+	}
+	
+	public void setMerchCharge(java.lang.String value) {
+		this.merchCharge = value;
+	}
+	
+	
 	public java.lang.String getOperNo() {
 		return this.operNo;
 	}
@@ -272,14 +351,13 @@ public class OmsPostionInfoPo implements Serializable{
 		this.releasEmerchName = releasEmerchName;
 	}
 
-	public java.lang.String getPriceUnit() {
-		return priceUnit;
+	public java.lang.String getPostionStat() {
+		return postionStat;
 	}
 
-	public void setPriceUnit(java.lang.String priceUnit) {
-		this.priceUnit = priceUnit;
+	public void setPostionStat(java.lang.String postionStat) {
+		this.postionStat = postionStat;
 	}
-	
 	
 	
 }

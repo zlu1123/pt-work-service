@@ -29,14 +29,15 @@ public class EnterpriseDirectorController {
 	
 	/**
 	   *企业负责人维护-负责人列表
+	 * @throws BusinessException 
 	 * */
 	@ResponseBody
 	@RequestMapping("/page" )
-	public Result page(@RequestHeader(value = "openId", required = true) String openId) {
+	public Result page(@RequestBody(required = false) @Valid EnterpriseInfoVo enterpriseInfoVo) throws BusinessException {
 		
 		logger.info("/infoRelease/page  param is {} ");
 		//企业负责人维护-负责人列表
-		return enterpriseDirectorService.page(openId);
+		return enterpriseDirectorService.page(enterpriseInfoVo);
 
 	}
 	
@@ -46,11 +47,10 @@ public class EnterpriseDirectorController {
 	 * */
 	@ResponseBody
 	@RequestMapping("/insert" )
-	public Result insert(@RequestBody(required = false) @Valid EnterpriseInfoVo enterpriseInfoVo,
-			@RequestHeader(value = "openId", required = true) String openId) throws BusinessException {
+	public Result insert(@RequestBody(required = false) @Valid EnterpriseInfoVo enterpriseInfoVo) throws BusinessException {
 		
 		//企业负责人维护-负责人新增
-		return enterpriseDirectorService.insert(enterpriseInfoVo,openId);
+		return enterpriseDirectorService.insert(enterpriseInfoVo);
 
 	}
 	

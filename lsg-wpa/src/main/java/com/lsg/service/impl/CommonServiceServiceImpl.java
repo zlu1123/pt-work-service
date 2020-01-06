@@ -20,7 +20,7 @@ import com.lsg.exception.BusinessException;
 import com.lsg.mapper.MerchInfoReleaseMapper;
 import com.lsg.mapper.MerchToUserInfoMapper;
 import com.lsg.mapper.PostionInfoMapper;
-import com.lsg.mapper.UserInfoMapper;
+import com.lsg.mapper.WpaUserInfoMapper;
 import com.lsg.model.Result;
 import com.lsg.service.CommonService;
 import com.lsg.service.PositionReleaseService;

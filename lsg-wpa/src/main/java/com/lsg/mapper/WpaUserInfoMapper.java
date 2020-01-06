@@ -8,7 +8,7 @@ import com.lsg.entity.WpaUserInfo;
 
 import tk.mybatis.mapper.common.BaseMapper;
 
-public interface UserInfoMapper extends BaseMapper<WpaUserInfo> {
+public interface WpaUserInfoMapper extends BaseMapper<WpaUserInfo> {
 	
 	 /**
      * 条件查询数据

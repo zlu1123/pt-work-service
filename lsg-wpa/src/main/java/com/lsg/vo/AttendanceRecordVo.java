@@ -15,6 +15,14 @@ public class AttendanceRecordVo {
 	private String currentDay;
 	
 	private String postionApplyId;
+	
+	private String examStat;
+	
+	private String workerUserId;
+	
+	private String merchExamStat;
+	
+	private String merchCharge;;
 
 	public String getClockType() {
 		return clockType;
@@ -62,6 +70,38 @@ public class AttendanceRecordVo {
 
 	public void setPostionApplyId(String postionApplyId) {
 		this.postionApplyId = postionApplyId;
+	}
+
+	public String getExamStat() {
+		return examStat;
+	}
+
+	public void setExamStat(String examStat) {
+		this.examStat = examStat;
+	}
+
+	public String getWorkerUserId() {
+		return workerUserId;
+	}
+
+	public void setWorkerUserId(String workerUserId) {
+		this.workerUserId = workerUserId;
+	}
+
+	public String getMerchExamStat() {
+		return merchExamStat;
+	}
+
+	public void setMerchExamStat(String merchExamStat) {
+		this.merchExamStat = merchExamStat;
+	}
+
+	public String getMerchCharge() {
+		return merchCharge;
+	}
+
+	public void setMerchCharge(String merchCharge) {
+		this.merchCharge = merchCharge;
 	}
 	
 	

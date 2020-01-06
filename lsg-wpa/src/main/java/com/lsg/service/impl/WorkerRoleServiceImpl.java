@@ -16,10 +16,12 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
 import com.lsg.entity.OmsPostionApplyInfoPo;
+import com.lsg.entity.OmsWorkExamInfoPo;
 import com.lsg.entity.OmsWorkerClockListPo;
 import com.lsg.exception.BusinessException;
 import com.lsg.mapper.PostionApplyInfoMapper;
 import com.lsg.mapper.WorkClockListMapper;
+import com.lsg.mapper.WorkerExemMapper;
 import com.lsg.model.Result;
 import com.lsg.service.WorkerRoleService;
 import com.lsg.utils.wechat.RSAUtils;
@@ -39,6 +41,10 @@ public class WorkerRoleServiceImpl implements WorkerRoleService{
 	
 	@Autowired
 	WorkClockListMapper workClockListMapper;
+	
+	
+	@Autowired
+	WorkerExemMapper workerExemMapper;
 	
 
 
@@ -83,13 +89,13 @@ public class WorkerRoleServiceImpl implements WorkerRoleService{
 		//登记务工人员报名信息
 		insertPostionApplyInfo(postionInfoVo,userId);
 		
-		return Result.success("00000000");
+		return Result.success();
 	}
 
 	private String creatsPostionApplyId(PostionInfoVo postionInfoVo, String userId) {
 		
-		String time = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss"));
-		String postionApplyId = time+postionInfoVo.getMerchId()+postionInfoVo.getPostionId();
+		//String time = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss"));
+		String postionApplyId = postionInfoVo.getMerchId()+postionInfoVo.getPostionId();
 		
 		return postionApplyId;
 	}
@@ -102,8 +108,8 @@ public class WorkerRoleServiceImpl implements WorkerRoleService{
 		OmsPostionApplyInfoPo po = new OmsPostionApplyInfoPo();
 		
 		po.setApplyUserId(userId);
-		po.setPostionId(postionInfoVo.getPostionId());
 		po.setMerchId(postionInfoVo.getMerchId());
+		po.setPostionId(postionInfoVo.getPostionId());
 		po.setPostionApplyId(postionApplyId);
 		po.setExemStat("1");
 		po.setCreateTime(new Date());
@@ -141,13 +147,39 @@ public class WorkerRoleServiceImpl implements WorkerRoleService{
 		
 		OmsPostionApplyInfoPo po = new OmsPostionApplyInfoPo();
 		
-		po.setPostionApplyId(po.getPostionApplyId());
+		po.setPostionApplyId(postionInfoVo.getPostionApplyId());
+		
+		po = postionApplyInfoMapper.selectOne(po);
+		
+		if(null==po) {
+			throw new BusinessException("用户信息不存在");
+		}
+		
+		//删除报名信息
 		int num = postionApplyInfoMapper.delete(po);
 		
 		if(num != 1) {
 			return Result.error("数据库删除数量不符");
 		}
-		//删除报名信息
+		
+		//如果已通过什么 删除审核信息
+		if("2".equals(po.getExemStat())) {
+			OmsWorkExamInfoPo po1 = new OmsWorkExamInfoPo();
+			po1.setPostionApplyId(postionInfoVo.getPostionApplyId());
+			
+			//删除审核信息
+			int num1 = workerExemMapper.delete(po1);
+			
+			if(num1 != 1) {
+				return Result.error("数据库删除数量不符");
+			}
+		}
+		
+		
+		
+		
+		
+		
 		return Result.success();
 	}
 
@@ -225,11 +257,11 @@ public class WorkerRoleServiceImpl implements WorkerRoleService{
 			OmsWorkerClockListPo po = new OmsWorkerClockListPo();
 			
 			po.setUserId(userId);
-			po.setMerchId(attendanceRecordVo.getMerchId());
 			po.setPostionApplyId(attendanceRecordVo.getPostionApplyId());
-			po.setPostionId(attendanceRecordVo.getPostionId());
 			po.setClockType(attendanceRecordVo.getClockType());
 			po.setClockAddr(attendanceRecordVo.getClockAddr());
+			po.setMerchId(attendanceRecordVo.getMerchId());
+			po.setPostionId(attendanceRecordVo.getPostionId());
 			po.setClockTime(new Date());
 			po.setCreateTime(new Date());
 			
@@ -248,13 +280,6 @@ public class WorkerRoleServiceImpl implements WorkerRoleService{
 
 	private void checkparm(AttendanceRecordVo attendanceRecordVo) throws BusinessException {
 
-		if(Strings.isBlank(attendanceRecordVo.getMerchId())) {
-			throw new BusinessException("商户ID不能为空");
-		}
-		
-		if(Strings.isBlank(attendanceRecordVo.getPostionId())) {
-			throw new BusinessException("职位ID不能为空");
-		}
 		
 		if(Strings.isBlank(attendanceRecordVo.getClockType())) {
 			throw new BusinessException("打卡类型不能为空");
@@ -312,16 +337,13 @@ public class WorkerRoleServiceImpl implements WorkerRoleService{
 		//查询用户是否有申请通过的职位
 		OmsPostionApplyInfoPo po =  new OmsPostionApplyInfoPo();
 		po.setApplyUserId(userId);
-		po.setPostionId(attendanceRecordVo.getPostionId());
-		po.setMerchId(attendanceRecordVo.getMerchId());
 		po.setExemStat("2");
 		
-		po = postionApplyInfoMapper.selectOne(po);
+		List<OmsPostionApplyInfoPo> list = postionApplyInfoMapper.select(po);
 		
 		//List<Map<String,Object>> out = new ArrayList<Map<String,Object>>();
 		
-		if(null!=po) {
-			
+		if(null!=list) {
 			
 			//查询是否已经签到/签退.若已经签到或签退，
 			//则返回对应结果。
@@ -340,7 +362,7 @@ public class WorkerRoleServiceImpl implements WorkerRoleService{
 				out.add(map1);
 			}*/
 			
-			return Result.success(po.getPostionApplyId());
+			return Result.success(list);
 		}
 		return Result.success(null);
 		

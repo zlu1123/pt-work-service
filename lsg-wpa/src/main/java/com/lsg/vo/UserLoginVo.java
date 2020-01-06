@@ -10,6 +10,7 @@ public class UserLoginVo {
 	private String loginId;
 	
 	private String pwd;
+	
 
 	public String getUserName() {
 		return userName;

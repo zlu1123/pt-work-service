@@ -33,12 +33,10 @@ public class EnterpriseReleaseController {
 	 * */
 	@ResponseBody
 	@RequestMapping("/page" )
-	public Result page(@RequestBody(required = false) @Valid EnterpriseInfoVo enterpriseInfoVo,
-			@RequestHeader(value = "openId", required = true) String openId) {
+	public Result page(@RequestBody(required = false) @Valid EnterpriseInfoVo enterpriseInfoVo) {
 		
-		logger.info("/page  param is {} ");
 		//企业信息维护-查询企业列表
-		return enterpriseReleaseService.page(openId);
+		return enterpriseReleaseService.page(enterpriseInfoVo);
 
 	}
 	
@@ -48,11 +46,10 @@ public class EnterpriseReleaseController {
 	 * */
 	@ResponseBody
 	@RequestMapping("/insert" )
-	public Result insert(@RequestBody(required = false) @Valid EnterpriseInfoVo enterpriseInfoVo,
-			@RequestHeader(value = "openId", required = true) String openId) throws BusinessException {
+	public Result insert(@RequestBody(required = false) @Valid EnterpriseInfoVo enterpriseInfoVo) throws BusinessException {
 		
 		//企业信息维护-企业新增
-		return enterpriseReleaseService.insert(enterpriseInfoVo,openId);
+		return enterpriseReleaseService.insert(enterpriseInfoVo);
 
 	}
 	

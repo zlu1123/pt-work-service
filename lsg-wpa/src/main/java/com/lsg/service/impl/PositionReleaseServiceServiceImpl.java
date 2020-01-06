@@ -1,8 +1,13 @@
 package com.lsg.service.impl;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.lang.StringUtils;
+import org.apache.logging.log4j.util.Strings;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -10,17 +15,16 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.lsg.common.ComonUtil;
 import com.lsg.entity.OmsMerchInfoPo;
-import com.lsg.entity.OmsMerchToUserInofPo;
 import com.lsg.entity.OmsPostionInfoPo;
-import com.lsg.entity.WpaUserInfo;
 import com.lsg.exception.BusinessException;
 import com.lsg.mapper.MerchInfoReleaseMapper;
 import com.lsg.mapper.MerchToUserInfoMapper;
 import com.lsg.mapper.PostionInfoMapper;
-import com.lsg.mapper.UserInfoMapper;
+import com.lsg.mapper.WpaUserInfoMapper;
 import com.lsg.model.Result;
 import com.lsg.service.PositionReleaseService;
 import com.lsg.vo.PostionInfoVo;
+
 
 @Service 
 @Transactional(propagation = Propagation.REQUIRED, rollbackFor = {Exception.class})
@@ -29,7 +33,7 @@ public class PositionReleaseServiceServiceImpl implements PositionReleaseService
 	
 	
 	@Autowired
-	private UserInfoMapper userInfoMapper;
+	private WpaUserInfoMapper userInfoMapper;
 	
 	@Autowired
 	private MerchToUserInfoMapper merchToUserInfoMapper;
@@ -40,32 +44,18 @@ public class PositionReleaseServiceServiceImpl implements PositionReleaseService
 	@Autowired
 	private PostionInfoMapper postionInfoMapper;
 	@Override
-	public Result insert(PostionInfoVo PostionInfoVo, String openId) throws BusinessException {
+	public Result insert(PostionInfoVo PostionInfoVo) throws BusinessException {
 		// TODO Auto-generated method stub
 		//通过openId 缓存中获取用户ID
-		String userId = openId;
-		
-		//查询用户信息 是否是企业类型
-		WpaUserInfo po = new WpaUserInfo();
-		po.setUserId(userId);
-		
-		po = userInfoMapper.selectOne(po);
-		
-		if(null ==po) {
-			throw new BusinessException("用户信息不存在");
-		}else {
-			if(!"03".equals(po.getUserType())) {
-				throw new BusinessException("非企业负责人不能发布职位");
-			}
-		}
+		String merchId = PostionInfoVo.getMerchId();
 		
 		//根据负责人人用户ID查询企业ID
-		OmsMerchToUserInofPo merchInfo = queryMerchInfo(userId);
+		//OmsMerchToUserInofPo merchInfo = queryMerchInfo(userId);
 		//创建职位ID、
-		String positionId = ComonUtil.createPositionId(merchInfo.getMerchId());
+		String positionId = ComonUtil.createPositionId(merchId);
 		
 		//发布职位信息
-		insertPostionInfo(PostionInfoVo,merchInfo.getMerchId(),positionId,userId);
+		insertPostionInfo(PostionInfoVo,merchId,positionId,merchId);
 		
 		
 		return Result.success();
@@ -90,6 +80,7 @@ public class PositionReleaseServiceServiceImpl implements PositionReleaseService
 		po.setPostionAddr(vo.getPostionAddr());
 		po.setPostionWelfare(vo.getPostionWelfare());
 		po.setPostionRequire(vo.getPostionRequire());
+		po.setPostionStat("01");
 		po.setWorkTime(vo.getWorkTime());
 		po.setPrice(vo.getPrice());
 		po.setPriceUnit(vo.getPriceUnit());
@@ -100,6 +91,7 @@ public class PositionReleaseServiceServiceImpl implements PositionReleaseService
 		po.setHealth(vo.getHealth());
 		po.setReleasEmerch(merchId);
 		po.setReleasEmerchName(merchInfoPo.getMerchName());
+		po.setMerchCharge(vo.getMerchCharge());
 		po.setOperNo(userId);
 		po.setModifyTime(new Date());
 		po.setCreateTime(new Date());
@@ -112,22 +104,6 @@ public class PositionReleaseServiceServiceImpl implements PositionReleaseService
 		}
 	}
 
-	private OmsMerchToUserInofPo queryMerchInfo(String userId) throws BusinessException {
-		
-		OmsMerchToUserInofPo po = new OmsMerchToUserInofPo();
-		po.setMerchChargeId(userId);
-		
-		po = merchToUserInfoMapper.selectOne(po);
-		if(null==po) {
-			throw new BusinessException("企业负责人公司信息不存在");
-		}
-		
-		
-		return po;
-		
-		
-		
-	}
 
 	@Override
 	public Result update(PostionInfoVo PostionInfoVo, String openId) {
@@ -141,11 +117,6 @@ public class PositionReleaseServiceServiceImpl implements PositionReleaseService
 		return null;
 	}
 
-	@Override
-	public Result page(PostionInfoVo PostionInfoVo, String openId) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public Result positionInfo(PostionInfoVo PostionInfoVo, String openId) throws BusinessException {
@@ -161,10 +132,39 @@ public class PositionReleaseServiceServiceImpl implements PositionReleaseService
 		
 		return Result.success(po);
 	}
+
+	@Override
+	public Result page(PostionInfoVo vo) throws BusinessException {
+
+		if(Strings.isBlank(vo.getMerchId())) {
+			throw new BusinessException("公司ID不能为空");
+		}
+		
+		OmsPostionInfoPo po = new OmsPostionInfoPo();
+		po.setReleasEmerch(vo.getMerchId());
+		List<OmsPostionInfoPo> list = postionInfoMapper.select(po);	
+		
+		List<Map<String,Object>> outlist = new ArrayList<Map<String,Object>>();
+		for(OmsPostionInfoPo postionPo : list) {
+			Map<String,Object> map = new HashMap<String, Object>();
+			//map.put("merchId", postionPo.getReleasEmerch());
+			map.put("merchName", postionPo.getReleasEmerchName());
+			map.put("postionId", postionPo.getPostionId());
+			map.put("postionName", postionPo.getPostionName());
+			map.put("workTime", postionPo.getWorkTime());
+			map.put("billtype", postionPo.getBilltype());
+			map.put("price", postionPo.getPrice());
+			map.put("priceUnit", postionPo.getPriceUnit());
+			
+			outlist.add(map);
+		}
+		
+				
+				
+		return Result.success(list);
+	}
+
 	
 	
-
-
-
 
 }

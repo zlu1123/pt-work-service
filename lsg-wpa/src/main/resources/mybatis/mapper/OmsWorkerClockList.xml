@@ -4,9 +4,9 @@
 <mapper namespace="com.lsg.mapper.WorkClockListMapper">
 	<resultMap id="BaseResultMap" type="com.lsg.entity.OmsWorkerClockListPo">
 		<result column="USER_ID" property="userId" />
+		<result column="POSTION_APPLY_ID" property="postionApplyId" />
 		<result column="POSTION_ID" property="postionId" />
 		<result column="MERCH_ID" property="merchId" />
-		<result column="POSTION_APPLY_ID" property="postionApplyId" />
 		<result column="CLOCK_TYPE" property="clockType" />
 		<result column="CLOCK_ADDR" property="clockAddr" />
 		<result column="CLOCK_TIME" property="clockTime" />
@@ -17,8 +17,6 @@
 	
 	<select id="queryCurrentDayClock" resultMap="BaseResultMap" parameterType="java.util.HashMap">
 		select USER_ID ,
-			   POSTION_ID,
-		       MERCH_ID,
 		       CLOCK_TYPE ,
 		       POSTION_APPLY_ID,
 		       CLOCK_ADDR,

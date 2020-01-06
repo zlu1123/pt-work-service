@@ -39,6 +39,27 @@ public class PostionInfoVo {
 	private String health;
 	
 	
+	private String applyExemStat;
+	
+	
+	private String applyUserId;
+	
+	
+	private String merchCharge;
+	
+	
+	private String postionStat;
+	
+	
+	private String platforMcharge1;
+  	
+	private String platforMcharge2;
+    	
+	private String platforMcharge3;
+  	
+	private String platforMcharge4;
+	
+	
 	public String getMerchId() {
 		return merchId;
 	}
@@ -174,7 +195,70 @@ public class PostionInfoVo {
 	public void setPriceUnit(String priceUnit) {
 		this.priceUnit = priceUnit;
 	}
-	
+
+	public String getApplyExemStat() {
+		return applyExemStat;
+	}
+
+	public void setApplyExemStat(String applyExemStat) {
+		this.applyExemStat = applyExemStat;
+	}
+
+	public String getApplyUserId() {
+		return applyUserId;
+	}
+
+	public void setApplyUserId(String applyUserId) {
+		this.applyUserId = applyUserId;
+	}
+
+	public String getMerchCharge() {
+		return merchCharge;
+	}
+
+	public void setMerchCharge(String merchCharge) {
+		this.merchCharge = merchCharge;
+	}
+
+	public String getPostionStat() {
+		return postionStat;
+	}
+
+	public void setPostionStat(String postionStat) {
+		this.postionStat = postionStat;
+	}
+
+	public String getPlatforMcharge1() {
+		return platforMcharge1;
+	}
+
+	public void setPlatforMcharge1(String platforMcharge1) {
+		this.platforMcharge1 = platforMcharge1;
+	}
+
+	public String getPlatforMcharge2() {
+		return platforMcharge2;
+	}
+
+	public void setPlatforMcharge2(String platforMcharge2) {
+		this.platforMcharge2 = platforMcharge2;
+	}
+
+	public String getPlatforMcharge3() {
+		return platforMcharge3;
+	}
+
+	public void setPlatforMcharge3(String platforMcharge3) {
+		this.platforMcharge3 = platforMcharge3;
+	}
+
+	public String getPlatforMcharge4() {
+		return platforMcharge4;
+	}
+
+	public void setPlatforMcharge4(String platforMcharge4) {
+		this.platforMcharge4 = platforMcharge4;
+	}
 	
 	
 	

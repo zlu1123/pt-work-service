@@ -128,7 +128,7 @@ public class MD5Utils {
 	    }
 
 	public static void main(String[] args) {
-		String content = getMD5("24358");
+		String content = getMD5("123456");
 		System.out.println(content);
 	}
 

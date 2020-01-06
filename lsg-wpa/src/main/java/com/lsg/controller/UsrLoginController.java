@@ -51,4 +51,22 @@ private Logger logger = LoggerFactory.getLogger(getClass());
 		
 	} 
 	
+	
+	/**
+	   * 用户登陆
+	 * */
+	@RequestMapping("/omslogin")
+	@ResponseBody
+	public Result  omslogin(@RequestBody(required = false) @Valid UserLoginVo userLoginVo) throws Exception {
+
+
+		logger.info("内管登录开始");
+		
+		Result out = userLoginService.OmsUserLogin(userLoginVo);
+		
+		logger.info("内管登录结束");
+		return out;	
+		
+	} 
+	
 }

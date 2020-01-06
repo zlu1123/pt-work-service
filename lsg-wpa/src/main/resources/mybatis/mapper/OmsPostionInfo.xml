@@ -8,6 +8,7 @@
 		<result column="POSTION_ADDR" property="postionAddr" />
 		<result column="POSTION_WELFARE" property="postionWelfare" />
 		<result column="POSTION_REQUIRE" property="postionRequire" />
+		<result column="POSTION_STAT" property="postionStat" />
 		<result column="WORK_TIME" property="workTime" />
 		<result column="PRICE" property="price" />
 		<result column="PRICE_UNIT" property="priceUnit" />
@@ -18,6 +19,11 @@
 		<result column="HEALTH" property="health" />
 		<result column="RELEAS_EMERCH" property="releasEmerch" />
 		<result column="RELEAS_EMERCH_NAME" property="releasEmerchName" />
+		<result column="PLATFOR_MCHARGE1" property="platforMcharge1" />
+		<result column="PLATFOR_MCHARGE2" property="platforMcharge2" />
+		<result column="PLATFOR_MCHARGE3" property="platforMcharge3" />
+		<result column="PLATFOR_MCHARGE4" property="platforMcharge4" />
+		<result column="MERCH_CHARGE" property="merchCharge" />
 		<result column="OPER_NO" property="operNo" />
 		<result column="CREATE_TIME" property="createTime" />
 		<result column="MODIFY_TIME" property="modifyTime" />
@@ -31,6 +37,7 @@
 		POSTION_ADDR,
 		POSTION_WELFARE,
 		POSTION_REQUIRE,
+		POSTION_STAT,
 		WORK_TIME,
 		PRICE,
 		PRICE_UNIT,
@@ -41,11 +48,33 @@
 		HEALTH,
 		RELEAS_EMERCH,
 		RELEAS_EMERCH_NAME,
+		PLATFOR_MCHARGE1,
+		PLATFOR_MCHARGE2,
+		PLATFOR_MCHARGE3,
+		PLATFOR_MCHARGE4,
+		MERCH_CHARGE,
 		OPER_NO,
 		CREATE_TIME,
 		MODIFY_TIME,
 		REMARK1
 	</sql>
 
-
+	
+	<update id="updatePostionStat" >
+  	 update
+		t_oms_postion_info
+		
+			set 
+			POSTION_STAT = #{postionStat},
+			PLATFOR_MCHARGE1 = #{platforMcharge1},
+			PLATFOR_MCHARGE2 = #{platforMcharge2},
+			PLATFOR_MCHARGE3 = #{platforMcharge3},
+			PLATFOR_MCHARGE4 = #{platforMcharge4}
+		
+	 where
+			POSTION_ID = #{postionId}
+		
+  	</update>
+	
+	
 </mapper>
