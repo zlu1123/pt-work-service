@@ -111,7 +111,6 @@ public class WeiXinUtil {
 	     // SSLConnectionSocketFactory sslsf = new SSLConnectionSocketFactory(sslcontext, new String[] { "TLSv1" },null,SSLConnectionSocketFactory.BROWSER_COMPATIBLE_HOSTNAME_VERIFIER);
 	     // CloseableHttpClient httpclient = HttpClients.custom().setSSLSocketFactory(sslsf) .build();
 	     
-	      
 	    
 	      Map<String, String> cbMap = XmlUtil.xmlParse(restxml);
 	      

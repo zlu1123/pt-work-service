@@ -75,7 +75,45 @@ public class EnterpriseServiceImpl implements EnterpriseRoleService{
 
 	@Override
 	public Result punchCardRecordExam(AttendanceRecordVo vo, String userId) throws BusinessException {
+		
+		//参数检查
+		paramCheck(vo);
+		
+		Map<String,Object> map = new HashMap<String,Object>();
+		
+		map.put("postionApplyId", vo.getPostionApplyId());
+		map.put("currentDay", vo.getCurrentDay());
+		map.put("clockType", vo.getClockType());
+		
+		map.put("clockStat", vo.getExamStat());
+		
+		int num = workClockListMapper.updateClockStat(map);
+		if(num != 1) {
+			throw new BusinessException("数据库更新数据不符");
+		}
+		return null;
 
+		
+	}
+
+	private void paramCheck(AttendanceRecordVo vo) throws BusinessException {
+
+		if(Strings.isBlank(vo.getPostionApplyId())) {
+			throw new BusinessException("职位申请ID不能为空");
+		}
+		
+		if(Strings.isBlank(vo.getCurrentDay())) {
+			throw new BusinessException("目前日期不能为空");
+		}
+		
+		if(Strings.isBlank(vo.getClockType())) {
+			throw new BusinessException("打卡类型不能为空");
+		}
+		
+	}
+
+	@Override
+	public Result exemWork(@Valid AttendanceRecordVo vo, String userId) throws BusinessException {
 		//职位申请ID不能为空
 		if(Strings.isBlank(vo.getPostionApplyId())) {
 			throw new BusinessException("职位申请ID不能为空");

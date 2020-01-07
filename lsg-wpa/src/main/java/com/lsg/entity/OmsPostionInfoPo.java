@@ -66,10 +66,6 @@ private static final long serialVersionUID = 1L;
      */ 	
 	private java.lang.String price;
     /**
-     * 单位       db_column: PRICE_UNIT 
-     */ 	
-	private java.lang.String priceUnit;
-    /**
      * 结算方式       db_column: BILLTYPE 
      */ 	
 	private java.lang.String billtype;
@@ -132,8 +128,20 @@ private static final long serialVersionUID = 1L;
 	//columns END
 	
 	private java.lang.String releasEmerchName;
+	private java.lang.String releasEmerchAddr;
+	private java.lang.String releasEmerchImg;
 	
 	private java.lang.String postionStat;
+	
+	private java.lang.String workBeginDate;
+	
+	private java.lang.String workEndDate;
+	
+	private java.lang.String clockBeginDate;
+	
+	private java.lang.String clockEndDate;
+	
+	private java.lang.String workCount;
 
 	
 	
@@ -199,14 +207,6 @@ private static final long serialVersionUID = 1L;
 		this.price = value;
 	}
 	
-	
-	public java.lang.String getPriceUnit() {
-		return this.priceUnit;
-	}
-	
-	public void setPriceUnit(java.lang.String value) {
-		this.priceUnit = value;
-	}
 	
 	
 	public java.lang.String getBilltype() {
@@ -358,7 +358,62 @@ private static final long serialVersionUID = 1L;
 	public void setPostionStat(java.lang.String postionStat) {
 		this.postionStat = postionStat;
 	}
-	
+
+	public java.lang.String getWorkBeginDate() {
+		return workBeginDate;
+	}
+
+	public void setWorkBeginDate(java.lang.String workBeginDate) {
+		this.workBeginDate = workBeginDate;
+	}
+
+	public java.lang.String getWorkEndDate() {
+		return workEndDate;
+	}
+
+	public void setWorkEndDate(java.lang.String workEndDate) {
+		this.workEndDate = workEndDate;
+	}
+
+	public java.lang.String getClockBeginDate() {
+		return clockBeginDate;
+	}
+
+	public void setClockBeginDate(java.lang.String clockBeginDate) {
+		this.clockBeginDate = clockBeginDate;
+	}
+
+	public java.lang.String getClockEndDate() {
+		return clockEndDate;
+	}
+
+	public void setClockEndDate(java.lang.String clockEndDate) {
+		this.clockEndDate = clockEndDate;
+	}
+
+	public java.lang.String getWorkCount() {
+		return workCount;
+	}
+
+	public void setWorkCount(java.lang.String workCount) {
+		this.workCount = workCount;
+	}
+
+	public java.lang.String getReleasEmerchAddr() {
+		return releasEmerchAddr;
+	}
+
+	public void setReleasEmerchAddr(java.lang.String releasEmerchAddr) {
+		this.releasEmerchAddr = releasEmerchAddr;
+	}
+
+	public java.lang.String getReleasEmerchImg() {
+		return releasEmerchImg;
+	}
+
+	public void setReleasEmerchImg(java.lang.String releasEmerchImg) {
+		this.releasEmerchImg = releasEmerchImg;
+	}
 	
 }
 

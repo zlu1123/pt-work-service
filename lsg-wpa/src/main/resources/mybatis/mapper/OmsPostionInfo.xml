@@ -10,14 +10,20 @@
 		<result column="POSTION_REQUIRE" property="postionRequire" />
 		<result column="POSTION_STAT" property="postionStat" />
 		<result column="WORK_TIME" property="workTime" />
+		<result column="WORK_BEGIN_DATE" property="workBeginDate" />
+		<result column="WORK_END_DATE" property="workEndDate" />
+		<result column="CLOCK_BEGIN_DATE" property="clockBeginDate" />
+		<result column="CLOCK_END_DATE" property="clockEndDate" />
+		<result column="WORK_COUNT" property="workCount" />
 		<result column="PRICE" property="price" />
-		<result column="PRICE_UNIT" property="priceUnit" />
 		<result column="BILLTYPE" property="billtype" />
 		<result column="POSITIONDES" property="positiondes" />
 		<result column="INSURANCE" property="insurance" />
 		<result column="MARGIN" property="margin" />
 		<result column="HEALTH" property="health" />
 		<result column="RELEAS_EMERCH" property="releasEmerch" />
+		<result column="RELEAS_EMERCH_ADDR" property="releasEmerchAddr" />
+		<result column="RELEAS_EMERCH_IMG" property="releasEmerchImg" />
 		<result column="RELEAS_EMERCH_NAME" property="releasEmerchName" />
 		<result column="PLATFOR_MCHARGE1" property="platforMcharge1" />
 		<result column="PLATFOR_MCHARGE2" property="platforMcharge2" />
@@ -39,14 +45,20 @@
 		POSTION_REQUIRE,
 		POSTION_STAT,
 		WORK_TIME,
+		WORK_BEGIN_DATE,
+		WORK_END_DATE,
+		CLOCK_BEGIN_DATE,
+		CLOCK_END_DATE,
+		WORKER_COUNT,
 		PRICE,
-		PRICE_UNIT,
 		BILLTYPE,
 		POSITIONDES,
 		INSURANCE,
 		MARGIN,
 		HEALTH,
 		RELEAS_EMERCH,
+		RELEAS_EMERCH_ADDR,
+		RELEAS_EMERCH_IMG,
 		RELEAS_EMERCH_NAME,
 		PLATFOR_MCHARGE1,
 		PLATFOR_MCHARGE2,

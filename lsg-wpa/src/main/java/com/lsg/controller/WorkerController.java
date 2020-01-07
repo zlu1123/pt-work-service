@@ -236,4 +236,40 @@ public class WorkerController {
     }
 	
 	
+	/**
+	 *添加下挂卡
+	 * */
+	@ResponseBody
+	@RequestMapping("/cardAdd" )
+    public Result cardAdd(@RequestBody @Valid UserInfoVo userInfoVo,
+    		@RequestHeader(value = "openId", required = true) String openId) throws Exception {
+        
+		String userId = openId;
+		Result out = workerRoleService.cardAdd(userInfoVo,userId);
+		
+        return out;
+        
+       
+    }
+	
+	
+	
+	/**
+	 *下挂卡查询
+	 * */
+	@ResponseBody
+	@RequestMapping("/cardQuery" )
+    public Result cardQuery(@RequestBody @Valid UserInfoVo userInfoVo,
+    		@RequestHeader(value = "openId", required = true) String openId) throws Exception {
+        
+		String userId = openId;
+		Result out = workerRoleService.cardQuery(userInfoVo,userId);
+		
+		return out;
+        
+       
+    }
+	
+	
+	
 }

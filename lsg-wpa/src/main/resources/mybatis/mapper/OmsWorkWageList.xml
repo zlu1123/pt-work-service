@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lsg.mapper.WorkeWageListMapper">
+	<resultMap id="BaseResultMap" type="com.lsg.entity.OmsWorkWageListPo">
+		<result column="USER_ID" property="userId" />
+		<result column="POSTION_ID" property="postionId" />
+		<result column="MERCH_ID" property="merchId" />
+		<result column="POSTION_APPLY_ID" property="postionApplyId" />
+		<result column="FINANCE_OPER_NO" property="financeOperno" />
+		<result column="WAGE_AMT" property="wageAmt" />
+		<result column="ACCT_NO" property="acctNo" />
+		<result column="TXN_SEQ" property="txnSeq" />
+		<result column="TXN_STAT" property="txnStat" />
+		<result column="CREATE_TIME" property="createTime" />
+		<result column="MODIFY_TIME" property="modifyTime" />
+		<result column="REMARK1" property="remark1" />
+	</resultMap>
+
+
+	<sql id="Base_Column">
+		USER_ID,
+		POSTION_ID,
+		MERCH_ID,
+		POSTION_APPLY_ID,
+		FINANCE_OPER_NO,
+		WAGE_AMT,
+		ACCT_NO,
+		TXN_SEQ,
+		TXN_STAT,
+		CREATE_TIME,
+		MODIFY_TIME,
+		REMARK1
+	</sql>
+	
+	
+	  	 
+  <update id="t_oms_work_wage_list" >
+  	 update
+		t_oms_work_wage_list
+			set WAGE_AMT = #{wageAmt},
+			ACCT_NO = #{acctNo},
+			TXN_SEQ = #{txnSeq},
+			TXN_STAT = #{txnStat},
+			MODIFY_TIME = #{modifyTime}
+	 where
+		POSTION_APPLY_ID=#{postionApplyId} 		
+  	</update>
+	
+
+</mapper>

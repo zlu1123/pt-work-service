@@ -53,6 +53,7 @@ public class CommonServiceServiceImpl implements CommonService{
 		
 		List<Map<String,Object>> outlist = new ArrayList<Map<String,Object>>();
 		for(OmsPostionInfoPo postionPo : list) {
+			
 			Map<String,Object> map = new HashMap<String, Object>();
 			//map.put("merchId", postionPo.getReleasEmerch());
 			map.put("merchName", postionPo.getReleasEmerchName());
@@ -61,7 +62,8 @@ public class CommonServiceServiceImpl implements CommonService{
 			map.put("workTime", postionPo.getWorkTime());
 			map.put("billtype", postionPo.getBilltype());
 			map.put("price", postionPo.getPrice());
-			map.put("priceUnit", postionPo.getPriceUnit());
+			map.put("merchAddr", postionPo.getReleasEmerchAddr());
+			map.put("merchImg", postionPo.getReleasEmerchImg());
 			
 			outlist.add(map);
 		}

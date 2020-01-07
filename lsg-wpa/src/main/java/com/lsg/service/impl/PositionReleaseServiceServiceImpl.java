@@ -82,14 +82,20 @@ public class PositionReleaseServiceServiceImpl implements PositionReleaseService
 		po.setPostionRequire(vo.getPostionRequire());
 		po.setPostionStat("01");
 		po.setWorkTime(vo.getWorkTime());
+		po.setWorkBeginDate(vo.getWorkBeginDate());
+		po.setWorkEndDate(vo.getWorkEndDate());
+		po.setClockBeginDate(vo.getClockBeginDate());
+		po.setClockEndDate(vo.getClockEndDate());
+		po.setWorkCount(vo.getWorkCount());
 		po.setPrice(vo.getPrice());
-		po.setPriceUnit(vo.getPriceUnit());
 		po.setBilltype(vo.getBilltype());
 		po.setPositiondes(vo.getPositiondes());
 		po.setInsurance(vo.getInsurance());
 		po.setMargin(vo.getMargin());
 		po.setHealth(vo.getHealth());
 		po.setReleasEmerch(merchId);
+		po.setReleasEmerchAddr(merchInfoPo.getMerchAddr());
+		po.setReleasEmerchImg(merchInfoPo.getMerchImg());
 		po.setReleasEmerchName(merchInfoPo.getMerchName());
 		po.setMerchCharge(vo.getMerchCharge());
 		po.setOperNo(userId);
@@ -154,8 +160,6 @@ public class PositionReleaseServiceServiceImpl implements PositionReleaseService
 			map.put("workTime", postionPo.getWorkTime());
 			map.put("billtype", postionPo.getBilltype());
 			map.put("price", postionPo.getPrice());
-			map.put("priceUnit", postionPo.getPriceUnit());
-			
 			outlist.add(map);
 		}
 		

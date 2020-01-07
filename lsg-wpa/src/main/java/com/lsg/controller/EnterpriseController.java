@@ -56,5 +56,20 @@ public class EnterpriseController {
 	}
 	
 	
+	/**
+	   * 公司负责人  - 审核务工人员工作
+	 * @throws BusinessException 
+	 * */
+	@ResponseBody
+	@RequestMapping("/exemWork" )
+	public Result exemWork(@RequestBody(required = false) @Valid AttendanceRecordVo vo,
+        @RequestHeader(value = "openId", required = true) String openId) throws BusinessException {
+		
+		String userId = openId;
+      	return enterpriseRoleService.exemWork(vo,userId);
+
+	}
+	
+	
 	
 }

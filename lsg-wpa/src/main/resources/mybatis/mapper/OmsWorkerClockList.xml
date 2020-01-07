@@ -8,6 +8,7 @@
 		<result column="POSTION_ID" property="postionId" />
 		<result column="MERCH_ID" property="merchId" />
 		<result column="CLOCK_TYPE" property="clockType" />
+		<result column="CLOCK_STAT" property="clockStat" />
 		<result column="CLOCK_ADDR" property="clockAddr" />
 		<result column="CLOCK_TIME" property="clockTime" />
 		<result column="CREATE_TIME" property="createTime" />
@@ -33,6 +34,18 @@
   	 update
 		t_oms_worker_clock_list
 			set CLOCK_TIME = #{clockTime}
+	 where
+		POSTION_APPLY_ID=#{postionApplyId} 
+		and DATE_FORMAT(clock_time,'%Y%m%d') = #{currentDay} 
+		and CLOCK_TYPE = #{clockType}; 
+		
+  	</update>
+  	
+  	 
+  <update id="updateClockStat" >
+  	 update
+		t_oms_worker_clock_list
+			set CLOCK_STAT = #{clockStat}
 	 where
 		POSTION_APPLY_ID=#{postionApplyId} 
 		and DATE_FORMAT(clock_time,'%Y%m%d') = #{currentDay} 

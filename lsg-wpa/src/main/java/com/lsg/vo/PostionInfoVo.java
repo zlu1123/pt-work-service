@@ -59,6 +59,16 @@ public class PostionInfoVo {
   	
 	private String platforMcharge4;
 	
+	private String workBeginDate;
+	
+	private String workEndDate;
+	
+	private String clockBeginDate;
+	
+	private String clockEndDate;
+	
+	private String workCount;
+	
 	
 	public String getMerchId() {
 		return merchId;
@@ -258,6 +268,46 @@ public class PostionInfoVo {
 
 	public void setPlatforMcharge4(String platforMcharge4) {
 		this.platforMcharge4 = platforMcharge4;
+	}
+
+	public String getWorkBeginDate() {
+		return workBeginDate;
+	}
+
+	public void setWorkBeginDate(String workBeginDate) {
+		this.workBeginDate = workBeginDate;
+	}
+
+	public String getWorkEndDate() {
+		return workEndDate;
+	}
+
+	public void setWorkEndDate(String workEndDate) {
+		this.workEndDate = workEndDate;
+	}
+
+	public String getClockBeginDate() {
+		return clockBeginDate;
+	}
+
+	public void setClockBeginDate(String clockBeginDate) {
+		this.clockBeginDate = clockBeginDate;
+	}
+
+	public String getClockEndDate() {
+		return clockEndDate;
+	}
+
+	public void setClockEndDate(String clockEndDate) {
+		this.clockEndDate = clockEndDate;
+	}
+
+	public String getWorkCount() {
+		return workCount;
+	}
+
+	public void setWorkCount(String workCount) {
+		this.workCount = workCount;
 	}
 	
 	

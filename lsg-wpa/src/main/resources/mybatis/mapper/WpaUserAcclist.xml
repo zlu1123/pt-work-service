@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lsg.mapper.UserAcclistMapper">
+	<resultMap id="BaseResultMap" type="com.lsg.entity.WpaUserAcclistPo">
+		<result column="USER_ID" property="userId" />
+		<result column="ACCT_NO" property="acctNo" />
+		<result column="ACCT_NAME" property="acctName" />
+		<result column="ACCT_TYPE" property="acctType" />
+		<result column="CREATE_TIME" property="createTime" />
+		<result column="MODIFY_TIME" property="modifyTime" />
+		<result column="REMARK1" property="remark1" />
+	</resultMap>
+
+
+	<sql id="Base_Column">
+		USER_ID,
+		ACCT_NO,
+		ACCT_NAME,
+		ACCT_TYPE,
+		CREATE_TIME,
+		MODIFY_TIME,
+		REMARK1
+	</sql>
+
+</mapper>

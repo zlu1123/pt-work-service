@@ -14,7 +14,9 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.lsg.entity.OmsWorkExamInfoPo;
+import com.lsg.entity.OmsWorkWageListPo;
 import com.lsg.exception.BusinessException;
+import com.lsg.mapper.WorkeWageListMapper;
 import com.lsg.mapper.WorkerExemMapper;
 import com.lsg.model.Result;
 import com.lsg.service.FinanceRoleSevice;
@@ -26,6 +28,9 @@ public class FinanceServiceImpl implements FinanceRoleSevice{
 
 	@Autowired
 	private WorkerExemMapper workerExemMapper;
+	
+	@Autowired
+	private WorkeWageListMapper workeWageListMapper;
 	
 	
 	@Override
@@ -45,8 +50,20 @@ public class FinanceServiceImpl implements FinanceRoleSevice{
 		
 	}
 
-	private void insertWorkWageList(FinanceVo vo) {
-		// TODO Auto-generated method stub
+	private void insertWorkWageList(FinanceVo vo) throws BusinessException {
+		OmsWorkWageListPo po = new OmsWorkWageListPo();
+		
+		po.setUserId(vo.getWorkerUserId());
+		po.setPostionId(vo.getPostionId());
+		po.setMerchId(vo.getMerchId());
+		po.setPostionApplyId(vo.getPostionApplyId());
+		po.setFinanceOperno(vo.getFinancer());
+		po.setWageAmt(vo.getWageAmt());
+		
+		int num = workeWageListMapper.insert(po);
+		if(num != 1) {
+			throw new BusinessException("数据库插入数量不符");
+		}
 		
 	}
 

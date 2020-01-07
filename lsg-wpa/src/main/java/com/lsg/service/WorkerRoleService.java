@@ -1,5 +1,8 @@
 package com.lsg.service;
 
+import javax.validation.Valid;
+
+import com.lsg.exception.BusinessException;
 import com.lsg.model.Result;
 import com.lsg.vo.AttendanceRecordVo;
 import com.lsg.vo.PostionInfoVo;
@@ -35,5 +38,9 @@ public interface WorkerRoleService {
 	Result clockInOrSignOut(AttendanceRecordVo attendanceRecordVo,String openId) throws Exception;
 	
 	Result queryCurrentDayClock(AttendanceRecordVo attendanceRecordVo,String openId) throws Exception;
+
+	Result cardQuery(@Valid UserInfoVo userInfoVo, String openId);
+
+	Result cardAdd(@Valid UserInfoVo userInfoVo, String openId) throws BusinessException;
 
 }	
